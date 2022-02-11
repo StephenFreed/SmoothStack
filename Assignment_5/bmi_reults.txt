@@ -1,0 +1,4 @@
+These are the BMI results...
+Person 1 BMI Result: over
+Person 2 BMI Result: normal
+Person 3 BMI Result: under
