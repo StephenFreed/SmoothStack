@@ -120,15 +120,14 @@ print(upper_and_lower("Stephen"))
 print("~~~~ 10 ~~~~")
 
 
-# confused on what the output is supposed to be
 def any_odds(number_1, number_2):
     if number_1 % 2 != 0 or number_2 % 2 != 0:
-        return "greater"
+        return max(number_1, number_2)
     else:
-        return "lesser"
+        return min(number_1, number_2)
 
 
-print(any_odds(7, 8))
+print(any_odds(6, 9))
 
 # 11
 print("~~~~ 11 ~~~~")
@@ -152,7 +151,7 @@ def double_otherside_7(value):
     return distance + 7
 
 
-print(double_otherside_7(10))
+print(double_otherside_7(9))
 
 
 # 13
