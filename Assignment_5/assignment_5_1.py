@@ -2,25 +2,6 @@ import csv
 
 # assignment_5_1
 
-# result of data parsed from txt file below
-people_data_list = []
-
-with open("/Users/stephenfreed/Projects/SmoothStack/Assignment_5/input_data.txt", "r") as input_file:
-    reader = csv.reader(input_file)  # gets rows of txt file
-    header = next(reader)  # skip header row (Input Data:)
-    # gets number of people in input data / skips row / list -> [0] of list -> integer
-    num_of_people = int(next(reader)[0])
-    # loops to build clean list (strip white space)
-    for row in reader:
-        # converts list str to just str and splits on white space
-        # this creates list of the two inputs to work with
-        split_row_list = str(row[0]).split(" ")
-        # cleans and appends new split list with people data to people_data_list
-        stripped_row = []
-        for elm in split_row_list:
-            stripped_row.append(elm.strip())
-        people_data_list.append(stripped_row)
-
 
 # function to calculate each inputs bmi / returns list of answers
 def calculate_bmi(data_list) -> list:
@@ -39,6 +20,25 @@ def calculate_bmi(data_list) -> list:
 
     return results_list
 
+
+# result of data parsed from txt file below
+people_data_list = []
+
+with open("/Users/stephenfreed/Projects/SmoothStack/Assignment_5/input_data.txt", "r") as input_file:
+    reader = csv.reader(input_file)  # gets rows of txt file
+    header = next(reader)  # skip header row (Input Data:)
+    # gets number of people in input data / skips row / list -> [0] of list -> integer
+    num_of_people = int(next(reader)[0])
+    # loops to build clean list (strip white space)
+    for row in reader:
+        # converts list str to just str and splits on white space
+        # this creates list of the two inputs to work with
+        split_row_list = str(row[0]).split(" ")
+        # cleans and appends new split list with people data to people_data_list
+        stripped_row = []
+        for elm in split_row_list:
+            stripped_row.append(elm.strip())
+        people_data_list.append(stripped_row)
 
 # calls function on created people_data_list from txt file
 bmi_results = calculate_bmi(people_data_list)
