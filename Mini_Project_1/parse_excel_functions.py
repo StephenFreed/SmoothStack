@@ -2,7 +2,6 @@ import re
 import time
 import datetime
 import subprocess
-from copy import copy
 import openpyxl
 import logging
 
@@ -27,8 +26,7 @@ def parse_excel_data(file_name_to_parse):
 
     # loads excel workbook
     wb_obj = openpyxl.load_workbook(
-        "/Users/stephenfreed/Projects/SmoothStack/Mini_Project_1/Excel_Files/{}".format(file_name_to_parse),
-        data_only=True
+        "/Users/stephenfreed/Projects/SmoothStack/Mini_Project_1/Excel_Files/{}".format(file_name_to_parse)
     )
 
     # gets active sheet of workbook
@@ -80,6 +78,7 @@ def parse_excel_data(file_name_to_parse):
             except:
                 logging.error("Finding Row With Month And Year Failed. May Not Be In File...")
                 print("\nWe Did Not Find The Month and Year To Parse In This Excel Workbook")
+                raise ProgramError
 
 
         # builds list of tuples with header name and column number/skips invalid cells
@@ -95,6 +94,7 @@ def parse_excel_data(file_name_to_parse):
             except:
                 logging.error("Error While Building Header,Column List In parse_excel_functions.py")
                 print("\n(ERROR) Error While Building Header,Column List In parse_excel_functions.py")
+                raise ProgramError
 
 
         # builds logging output for successful parsing of data
@@ -105,7 +105,7 @@ def parse_excel_data(file_name_to_parse):
         successful_log_string += "Data From Worksheet: {}\n".format(list_of_worksheets[0])
         successful_log_string += "~~~ For the Month of {} in {} ~~~\n".format(month_from_filename.capitalize(), year_from_filename)
 
-        # loops through row of info concatenating header and row info
+        # loops through target row concatenating header and row info
         for header, column_number in header_and_column_list:  # unpacks tuple
             try:
                 target_row_column_cell_obj = sheet_obj.cell(row=row_of_info , column=column_number)
@@ -125,10 +125,9 @@ def parse_excel_data(file_name_to_parse):
 
     except ProgramError:
         logging.error("A Known Exception Was Handled | Application Could Not Finish")
-        print("^^^ A Known Exception Was Handled ^^^\nApplication Could Not Finish\nPlease Check Log File...")
+        print("The Known Exception Above Was Handled ^^^\nApplication Could Not Finish\nPlease Check Log File...")
 
     except Exception as e:
-        print(e)
         logging.error("The Program Could Not Get Excel Data Successfully")
         print("The Program Could Not Get Excel Data Successfully\nTry Another File\nClosed Application...")
 

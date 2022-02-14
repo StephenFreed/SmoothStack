@@ -1,7 +1,6 @@
 import re
 import logging
 
-
 # validation function to validate file name is in correct format to parse from
 def is_valid_file_name(file_name):
 
@@ -11,7 +10,8 @@ def is_valid_file_name(file_name):
     """
 
     # list of months to validat month
-    list_of_months =["january",
+    list_of_months = [
+        "january",
         "february",
         "march",
         "april",
@@ -30,7 +30,7 @@ def is_valid_file_name(file_name):
 
     # checks proper length
     if len(file_name_list) != 6:
-        logging.error("File Chosen Was Formated Improperly")
+        logging.error("File Chosen Was Formatted Improperly")
         return "\n(ERROR: Invalid File Format) Format: expedia_report_monthly_{full month in lowercase}_{4 digit year}.xlsx"
 
     # checks for proper file extension
@@ -40,7 +40,7 @@ def is_valid_file_name(file_name):
 
     # checks for valid month
     elif list_of_months.count(file_name_list[3]) != 1:
-        logging.error("File Chosen Has Month Incorrectly Formated In Name")
+        logging.error("File Chosen Has Month Incorrectly Formatted In Name")
         return "\n(ERROR: Month Invalid) Format: expedia_report_monthly_{full month in lowercase}_{4 digit year}.xlsx "
 
     # checks the year is 4 digits and all numeric

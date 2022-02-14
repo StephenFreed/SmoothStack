@@ -3,7 +3,6 @@ import validation_functions as validate
 import parse_excel_functions as pe
 import logging
 
-
 # structures logging formatting to log_file
 logging.basicConfig(
     format="%(asctime)s - [%(levelname)s] - %(message)s",
@@ -12,17 +11,14 @@ logging.basicConfig(
     filename="/Users/stephenfreed/Projects/SmoothStack/Mini_Project_1/logging/log_file.txt"
 )
 
-
 # pulls in list of file names from target excel file directory
 excel_directory = "/Users/stephenfreed/Projects/SmoothStack/Mini_Project_1/excel_files/"
 excel_file_list = os.listdir(excel_directory)
-
 
 # builds list of available files from that directory to diplay as choices to user
 input_display_list_of_files = "Choose 0 To Quit Application\n"
 for i, file_name in enumerate(excel_file_list):
     input_display_list_of_files += f"Choose {i+1} for: {file_name}\n"
-
 
 # asks user to select file to parse
 selection = True
@@ -52,7 +48,7 @@ while selection:
         else:
             # calls function based on user input - 1/results from validation returned
             is_valid_file = validate.is_valid_file_name(excel_file_list[file_selection_number - 1])
-            # checks if return is a valid file name/ if not asks user to chose again
+            # checks if return is a valid file name/if not asks user to chose again
             if is_valid_file != "valid_file_name":
                 print(is_valid_file)
 
@@ -60,6 +56,7 @@ while selection:
             # parsing functions in module parse_excel_functions
             else:
                 pe.parse_excel_data(excel_file_list[file_selection_number - 1])
+                # terminates while
                 selection = False
 
     except IndexError:  # out of range
@@ -69,4 +66,4 @@ while selection:
     except Exception as e:  # all other problems
         logging.error("Selected File Choice Was Not A Valid Choice")
         print("\n(Error!) Selected File Choice Was Not A Valid Choice\nSelect A Valid Number...")
-        print(e)
+        # print(e) //used to troubleshoot
