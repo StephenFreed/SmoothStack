@@ -1,0 +1,21 @@
+12:27:25 02-14-2022 - [INFO] - Application Was Successfully Closed
+12:27:42 02-14-2022 - [ERROR] - Selected File Number Was Out Of Range Of Choices
+12:28:05 02-14-2022 - [ERROR] - Selected File Number Was Out Of Range Of Choices
+12:28:22 02-14-2022 - [ERROR] - File Chosen Is Not A '.xlsx' Excel File
+12:28:39 02-14-2022 - [ERROR] - File Chosen Has Incorrect Date Formatting
+12:28:48 02-14-2022 - [ERROR] - File Chosen Has Month Incorrectly Formated In Name
+12:28:56 02-14-2022 - [ERROR] - File Chosen Was Formated Improperly
+12:29:23 02-14-2022 - [ERROR] - File Chosen Has Incorrect Date Formatting
+12:30:42 02-14-2022 - [INFO] - 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Parsed Excel File: expedia_report_monthly_march_2018.xlsx
+Data From Worksheet: Summary Rolling MoM
+~~~ For the Month of March in 2018 ~~~
+Calls Offered: 22343
+Abandon after 30s: 0.0305
+FCR: 0.86
+DSAT: 0.18
+CSAT: 0.744
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+12:30:42 02-14-2022 - [INFO] - Application Successfully Ran
