@@ -1,6 +1,4 @@
 import os
-import subprocess
-import time
 import validation_functions as validate
 import parse_excel_functions as pe
 import logging
@@ -12,12 +10,12 @@ logging.basicConfig(
     format="%(asctime)s - [%(levelname)s] - %(message)s",
     level=logging.INFO,
     datefmt="%H:%M:%S %m-%d-%Y",
-    filename="/Users/stephenfreed/Projects/SmoothStack/Mini_Project_1/log_file.txt"
+    filename="/Users/stephenfreed/Projects/SmoothStack/Mini_Project_1/logging/log_file.txt"
 )
 
 
 # pulls in list of file names from target excel file directory
-excel_directory = "/Users/stephenfreed/Projects/SmoothStack/Mini_Project_1/Excel_Files/"
+excel_directory = "/Users/stephenfreed/Projects/SmoothStack/Mini_Project_1/excel_files/"
 excel_file_list = os.listdir(excel_directory)
 
 
@@ -27,7 +25,7 @@ for i, file_name in enumerate(excel_file_list):
     input_display_list_of_files += f"Choose {i+1} for: {file_name}\n"
 
 
-# asks to select file to parse data from
+# asks user to select file to parse
 selection = True
 while selection:
     try:
@@ -37,15 +35,14 @@ while selection:
             f"\n-- Please Select A File To Parse --\n{input_display_list_of_files}\nEnter Number: ")
         )
 
-        # validation to make sure input selection is valid
         # 0 quits application
         if file_selection_number == 0:
             logging.info("Application Was Successfully Closed")
-            print("\nExiting Parsing Application...\n~~~~ Successfully Closed Application ~~~~")
+            print("\nExiting Parsing Application...\n\n~~~~ Successfully Closed Application ~~~~")
             # terminates while
             selection = False
 
-        # checks if number is negative/can give false results(example list[-1])
+        # checks if number is negative, this can give false results(example: list[-1])
         elif file_selection_number < 1:
             logging.error("Selected File Number Was Out Of Range Of Choices")
             print("\n(Error!) Please Select A Number Displayed...")
@@ -54,9 +51,7 @@ while selection:
         # if invalid logs error and asks user to choose a valid file name
         # if valid runs parse_excel_data function from parse_excel module
         else:
-
-            # calls is_valid_file from validate module on selected file
-            # validation function in module validation_functions
+            # calls function based on user input - 1/results from validation returned
             is_valid_file = validate.is_valid_file_name(excel_file_list[file_selection_number - 1])
             # checks if return is a valid file name/ if not asks user to chose again
             if is_valid_file != "valid_file_name":
@@ -66,23 +61,13 @@ while selection:
             # parsing functions in module parse_excel_functions
             else:
                 pe.parse_excel_data(excel_file_list[file_selection_number - 1])
-                logging.info("Application Successfully Ran")
-                print(f"\nCongratulations!\n\nYou Selected File: {excel_file_list[file_selection_number - 1]}\n")
-                print("~~~~~~~~~~~~~~~~~~~~~~\n ~ Opening Log File ~\n~~~~~~~~~~~~~~~~~~~~~~")
-                # terminates while
                 selection = False
 
-    # out of range
-    except IndexError:
+    except IndexError:  # out of range
         logging.error("Selected File Number Was Out Of Range Of Choices")
         print("\n(Error!) Please Select A Number Displayed...")
 
-    # all other problems
-    except Exception as e:
+    except Exception as e:  # all other problems
         logging.error("Selected File Choice Was Not A Valid Choice")
         print("\n(Error!) Selected File Choice Was Not A Valid Choice\nSelect A Valid Number...")
         print(e)
-
-
-# time.sleep(1)
-# subprocess.call(["open", "/Users/stephenfreed/Projects/SmoothStack/Mini_Project_1/log_file.txt"])

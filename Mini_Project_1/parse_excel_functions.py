@@ -1,15 +1,23 @@
 import re
+import time
 import datetime
+import subprocess
 import openpyxl
 import logging
 
-# if everything is valid parses data
+
 def parse_excel_data(file_name_to_parse):
+
+    """
+    Parses data based on file name input. Looks for month and year.
+    Returns data from that month and year in the excel file.
+    """
 
     # splits file name on "_" and "." into list to validate
     file_name_list = re.split('_|\\.', file_name_to_parse)
     month_from_filename = file_name_list[3]
     year_from_filename = file_name_list [4]
+
 
     # loads excel workbook
     wb_obj = openpyxl.load_workbook(
@@ -18,80 +26,93 @@ def parse_excel_data(file_name_to_parse):
     # gets active sheet of workbook
     sheet_obj = wb_obj.active
 
-    # build list of first colomn values and find row with matching month and year
-    m_row = sheet_obj.max_row  # gets max row number
-    # builds list of valid dates and the rows they were in
+    # builds list of valid dates and the rows they were in/skips invalid rows
     parsed_date_list = []
+    m_row = sheet_obj.max_row  # gets max row number
     for row_number in range(1, m_row + 1):
         cell_obj = sheet_obj.cell(row=row_number, column=1)
-        cell_string = str(cell_obj.value)  # object to string
+        cell_string = str(cell_obj.value).strip()  # object to string
         date_format = "%Y-%m-%d %H:%M:%S"
-        # try:
-        # checks if cell is not empty and that date is in correct format
-        if cell_obj.value is not None and datetime.datetime.strptime(cell_string, date_format):
-            # date_string = str(cell_obj.value)
-            date_and_row = (cell_string, row_number)
-            parsed_date_list.append(date_and_row)
-        # except Exception as e:
-            # pass
-            # print(e)
-
-    # print("Parsed Date List: \n {}".format(parsed_date_list))
-
-    # loops through parsed date_list and finds row we need to parse
-    row_of_info = None
-    for date, row in parsed_date_list:
         try:
-            split_date_list = re.split('-| ', date) # split date into list
-            # print(split_date_list)
-            month_to_number_dict = {"january": "01", "february": "02", "march": "03", "april": "04", "may": "05", "june": "06", "july": "07", "august": "08", "september": "9", "october": "10", "november": "11", "december": "11"}
-            # print("{} - {}".format(split_date_list[0], year_from_filename))
-            # print("{} - {}".format(split_date_list[1], month_to_number_dict[month_from_filename]))
-            if split_date_list[0] == year_from_filename and split_date_list[1] == month_to_number_dict[month_from_filename]:
-                row_of_info = row
-                # print("The row we need info from is: {}".format(row))
+            # checks if cell is not empty and that date is in correct format
+            if cell_obj.value is not None and datetime.datetime.strptime(cell_string, date_format):
+                date_and_row = (cell_string, row_number)
+                parsed_date_list.append(date_and_row)
+        # passes if strptime function fails on invalid date format
         except:
-            # todo something went wrong
-            print("something went wrong")
+            pass
 
-    # return row info
-    # get column row header numbers to names
-    list_of_worksheets = wb_obj.sheetnames
-    # print(list_of_worksheets)
+    # loops through parsed_date_list and finds row we need to parse
+    row_of_info = None  # row to parse info from
+    for date, row in parsed_date_list:  # unpacks tuple
+        try:
+            split_date_list = re.split('-| ', date) # split date into list on "-" and space
+            month_to_number_dict = {
+                "january": "01",
+                "february": "02",
+                "march": "03",
+                "april": "04",
+                "may": "05",
+                "june": "06",
+                "july": "07",
+                "august": "08",
+                "september": "09",
+                "october": "10",
+                "november": "11",
+                "december": "12"
+            }
+            # checks if year from filename matches year in cell
+            # checks if month in file name matches month in cell through month_to_number_dict
+            if split_date_list[0] == year_from_filename and split_date_list[1] == month_to_number_dict[month_from_filename]:
+                row_of_info = row  # row number we need to parse
+        except:
+            logging.error("Finding Row With Month And Year Failed. May Not Be In File...")
+            print("\nWe Did Not Find The Month and Year To Parse In This Excel Workbook")
 
-    # get header info
+
+    # builds list of tuples with header name and column number/skips invalid cells
     header_and_column_list = []
     m_column = sheet_obj.max_column
     for column_number in range(1, m_column + 1):
         try:
-            cell_obj_2 = sheet_obj.cell(row=1, column=column_number)
-            cell_string = str(cell_obj_2.value).strip()
+            header_cell_obj = sheet_obj.cell(row=1, column=column_number)
+            cell_string = str(header_cell_obj.value).strip()
             header_and_column_number = (cell_string, column_number)
-            if cell_obj_2.value is not None:
+            if header_cell_obj.value is not None:
                 header_and_column_list.append(header_and_column_number)
-        except Exception as e:
-            print("somethign went wrong 404")
-            print(e)
+        except:
+            logging.error("Error While Building Header,Column List In parse_excel_functions.py")
+            print("\n(ERROR) Error While Building Header,Column List In parse_excel_functions.py")
 
-    print(header_and_column_list)
-# Calls Offered: 16,91
-# Abandon after 30s : 2.32%
-# FCR : 86.50%
-# DSAT :  14.20%
-# CSAT : 78.30%
-    successful_log_string = "\n"
+
+    # builds logging output for successful parsing of data
+    list_of_worksheets = wb_obj.sheetnames  # get workbook list of worksheets
+    successful_log_string = ""
     successful_log_string += "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
-    successful_log_string += "This is from worksheet {}\n".format(list_of_worksheets[0])
-    successful_log_string += "From Excel file {}\n".format(file_name_to_parse)
+    successful_log_string += "Successfully Parsed Excel File: {}\n".format(file_name_to_parse)
+    successful_log_string += "Data From Worksheet: {}\n".format(list_of_worksheets[0])
+    successful_log_string += "~~~ For the Month of {} in {} ~~~\n".format(month_from_filename.capitalize(), year_from_filename)
 
-    for header, column_number in header_and_column_list:
+    # loops through row of info concatenating header and row info
+    for header, column_number in header_and_column_list:  # unpacks tuple
         try:
-            cell_obj_3 = sheet_obj.cell(row=row_of_info , column=column_number)
-            successful_log_string += f"{header}: {column_number}\n"
-            # print(f"{header}-{column_number}")
-        except Exception as e:
-            print(e)
+            target_row_column_cell_obj = sheet_obj.cell(row=row_of_info , column=column_number)
+            target_row_column_cell = str(target_row_column_cell_obj.value).strip()
+            successful_log_string += f"{header}: {target_row_column_cell}\n"
+        except:
+            logging.error("Error While Building successful_log_string In parse_excel_functions.py")
+            print("\n(ERROR) Error While Building successful_log_string In parse_excel_functions.py")
 
     successful_log_string += "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
+
+    # print(f"\nCongratulations!\n\nyou selected file: {file_name_to_parse}\n")
+
+    # log and print parse info
     logging.info(successful_log_string)
     print(successful_log_string)
+
+    logging.info("Application Successfully Ran")
+
+    print("~~~~~~~~~~~~~~~~~~~~~~\n ~ Opening Log File ~\n~~~~~~~~~~~~~~~~~~~~~~")
+    time.sleep(1)
+    subprocess.call(["open", "/Users/stephenfreed/Projects/SmoothStack/Mini_Project_1/logging/log_file.txt"])

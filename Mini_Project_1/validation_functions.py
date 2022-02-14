@@ -14,24 +14,28 @@ def is_valid_file_name(file_name):
     list_of_months =["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"]
 
     # splits file name on "_" and "." into list to validate
-    file_name_list = re.split('_|\\.', file_name) # split file name into list
+    file_name_list = re.split('_|\\.', file_name)
 
     # checks proper length
     if len(file_name_list) != 6:
         logging.error("File Chosen Was Formated Improperly")
-        return "\n(ERROR: Invalid File Format) Formate: expedia_report_monthly_{full month in lowercase}_{4 digit year}.xlsx"
+        return "\n(ERROR: Invalid File Format) Format: expedia_report_monthly_{full month in lowercase}_{4 digit year}.xlsx"
+
     # checks for proper file extension
     elif file_name_list[5] != "xlsx":
         logging.error("File Chosen Is Not A '.xlsx' Excel File")
         return "\n(ERROR: Invalid File Extension) File Must End in: .xlsx"
+
     # checks for valid month
     elif list_of_months.count(file_name_list[3]) != 1:
         logging.error("File Chosen Has Month Incorrectly Formated In Name")
         return "\n(ERROR: Month Invalid) Format: expedia_report_monthly_{full month in lowercase}_{4 digit year}.xlsx "
-    # check the year is 4 digits and all numeric
+
+    # checks the year is 4 digits and all numeric
     elif len(file_name_list[4]) != 4 or file_name_list[4].isnumeric() is False:
-        logging.error("File Chosen Has Incorred Date Formatting")
-        return "\n(ERROR: Year Invalid) Format expedia_report_monthly_{month in lowercase}_{4 digit year}.xlsx "
+        logging.error("File Chosen Has Incorrect Date Formatting")
+        return "\n(ERROR: Year Invalid) Format: expedia_report_monthly_{month in lowercase}_{4 digit year}.xlsx "
+
     # returns is a valid file name
     else:
         return "valid_file_name"
