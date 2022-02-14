@@ -11,7 +11,19 @@ def is_valid_file_name(file_name):
     """
 
     # list of months to validat month
-    list_of_months =["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"]
+    list_of_months =["january",
+        "february",
+        "march",
+        "april",
+        "may",
+        "june",
+        "july",
+        "august",
+        "september",
+        "october",
+        "november",
+        "december"
+    ]
 
     # splits file name on "_" and "." into list to validate
     file_name_list = re.split('_|\\.', file_name)

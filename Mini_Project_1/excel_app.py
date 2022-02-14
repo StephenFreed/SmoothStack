@@ -3,7 +3,6 @@ import validation_functions as validate
 import parse_excel_functions as pe
 import logging
 
-# log file instead of txt
 
 # structures logging formatting to log_file
 logging.basicConfig(
