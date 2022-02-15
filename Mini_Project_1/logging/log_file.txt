@@ -1,0 +1,76 @@
+k17:51:35 02-14-2022 - [INFO] - Application Was Successfully Closed
+17:51:53 02-14-2022 - [ERROR] - Selected File Number Was Out Of Range Of Choices
+17:51:58 02-14-2022 - [ERROR] - Selected File Number Was Out Of Range Of Choices
+17:52:06 02-14-2022 - [ERROR] - File Chosen Is Not A '.xlsx' Excel File
+17:52:11 02-14-2022 - [ERROR] - File Chosen Has Incorrect Date Formatting
+17:52:25 02-14-2022 - [ERROR] - File Chosen Has Month Incorrectly Formatted In Name
+17:52:31 02-14-2022 - [ERROR] - File Chosen Was Formatted Improperly
+17:52:41 02-14-2022 - [ERROR] - File Chosen Has Incorrect Date Formatting
+17:53:01 02-14-2022 - [ERROR] - Error While Building successful_log_string In parse_excel_functions.py
+17:53:01 02-14-2022 - [ERROR] - A Known Exception Was Handled | Application Could Not Finish
+17:53:16 02-14-2022 - [INFO] - 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Successfully Parsed Excel File: expedia_report_monthly_march_2018.xlsx
+Data From Worksheet: Summary Rolling MoM
+~~~ For the Month of March in 2018 ~~~
+Calls Offered: 22343
+Abandon after 30s: 3.05%
+FCR: 86.00%
+DSAT: 18.00%
+CSAT: 74.40%
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+17:53:16 02-14-2022 - [INFO] - Application Successfully Ran
+22:56:17 02-14-2022 - [ERROR] - Selected File Choice Was Not A Valid Choice
+22:56:25 02-14-2022 - [ERROR] - Selected File Choice Was Not A Valid Choice
+22:56:28 02-14-2022 - [INFO] - Application Was Successfully Closed
+22:56:44 02-14-2022 - [ERROR] - Error While Building successful_log_string In parse_excel_functions.py
+22:56:44 02-14-2022 - [ERROR] - A Known Exception Was Handled | Application Could Not Finish
+22:56:58 02-14-2022 - [ERROR] - File Chosen Is Not A '.xlsx' Excel File
+22:57:03 02-14-2022 - [ERROR] - File Chosen Has Incorrect Date Formatting
+22:57:06 02-14-2022 - [ERROR] - File Chosen Has Month Incorrectly Formatted In Name
+22:57:08 02-14-2022 - [ERROR] - File Chosen Was Formatted Improperly
+22:57:09 02-14-2022 - [ERROR] - File Chosen Has Incorrect Date Formatting
+22:57:14 02-14-2022 - [ERROR] - Selected File Number Was Out Of Range Of Choices
+22:57:23 02-14-2022 - [INFO] - 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Successfully Parsed Excel File: expedia_report_monthly_january_2018.xlsx
+Data From Worksheet: Summary Rolling MoM
+~~~ For the Month of January in 2018 ~~~
+Calls Offered: 16915
+Abandon after 30s: 2.32%
+FCR: 86.50%
+DSAT: 14.20%
+CSAT: 78.30%
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+22:57:23 02-14-2022 - [INFO] - Application Successfully Ran
+22:57:40 02-14-2022 - [INFO] - 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Successfully Parsed Excel File: expedia_report_monthly_march_2018.xlsx
+Data From Worksheet: Summary Rolling MoM
+~~~ For the Month of March in 2018 ~~~
+Calls Offered: 22343
+Abandon after 30s: 3.05%
+FCR: 86.00%
+DSAT: 18.00%
+CSAT: 74.40%
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+22:57:40 02-14-2022 - [INFO] - Application Successfully Ran
+22:58:36 02-14-2022 - [INFO] - Application Was Successfully Closed
+22:58:52 02-14-2022 - [INFO] - Application Was Successfully Closed
+22:59:54 02-14-2022 - [INFO] - Application Was Successfully Closed
+23:00:28 02-14-2022 - [INFO] - 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Successfully Parsed Excel File: expedia_report_monthly_march_2018.xlsx
+Data From Worksheet: Summary Rolling MoM
+~~~ For the Month of March in 2018 ~~~
+Calls Offered: 22343
+Abandon after 30s: 3.05%
+FCR: 86.00%
+DSAT: 18.00%
+CSAT: 74.40%
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+23:00:28 02-14-2022 - [INFO] - Application Successfully Ran

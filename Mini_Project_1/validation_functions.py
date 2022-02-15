@@ -1,6 +1,7 @@
 import re
 import logging
 
+
 # validation function to validate file name is in correct format to parse from
 def is_valid_file_name(file_name):
 
@@ -31,7 +32,10 @@ def is_valid_file_name(file_name):
     # checks proper length
     if len(file_name_list) != 6:
         logging.error("File Chosen Was Formatted Improperly")
-        return "\n(ERROR: Invalid File Format) Format: expedia_report_monthly_{full month in lowercase}_{4 digit year}.xlsx"
+        return (
+                "\n(ERROR: Invalid File Format) "
+                "Format: expedia_report_monthly_{full month in lowercase}_{4 digit year}.xlsx"
+                )
 
     # checks for proper file extension
     elif file_name_list[5] != "xlsx":
