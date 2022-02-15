@@ -12,7 +12,7 @@ class ProgramError(Exception):
     pass
 
 
-def parse_excel_data(file_name_to_parse):
+def parse_excel_data(file_name_to_parse: str):
 
     """
     Parses data based on file name input. Looks for month and year.

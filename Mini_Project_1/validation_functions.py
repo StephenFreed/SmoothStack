@@ -3,7 +3,7 @@ import logging
 
 
 # validation function to validate file name is in correct format to parse from
-def is_valid_file_name(file_name):
+def is_valid_file_name(file_name: str) -> str:
 
     """
     Validation function to validate file name is in correct format to parse
