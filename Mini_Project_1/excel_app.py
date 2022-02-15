@@ -63,7 +63,7 @@ while selection:
         logging.error("Selected File Number Was Out Of Range Of Choices")
         print("\n(Error!) Please Select A Number Displayed...")
 
-    except Exception as e:  # all other problems
+    except:  # noqa all other problems
         logging.error("Selected File Choice Was Not A Valid Choice")
         print("\n(Error!) Selected File Choice Was Not A Valid Choice\nSelect A Valid Number...")
         # print(e) //used to troubleshoot
