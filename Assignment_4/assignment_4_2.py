@@ -3,15 +3,19 @@ import csv
 # holds list built below from csv
 book_shop_list = []
 
-with open("/Users/stephenfreed/Projects/SmoothStack/Assignment_4/accounting_list.txt", "r") as f:
-    reader = csv.reader(f)  # gets rows of csv list
-    header = next(reader)  # skip header row
-    # loops to build clean list (strip whitespace)
-    for row in reader:
-        stripped_row = []
-        for elm in row:
-            stripped_row.append(elm.strip())
-        book_shop_list.append(stripped_row)
+try:
+    with open("/Users/stephenfreed/Projects/SmoothStack/Assignment_4/accounting_list.csv", "r") as f:
+        reader = csv.reader(f)  # gets rows of csv list
+        header = next(reader)  # skip header row
+        # loops to build clean list (strip whitespace)
+        for row in reader:
+            stripped_row = []
+            for elm in row:
+                stripped_row.append(elm.strip())
+            book_shop_list.append(stripped_row)
+except Exception as e:
+    print("Problem Importing From CSV File")
+    print(e)
 
 
 # function to calculate tuple
@@ -22,7 +26,7 @@ def calc_product(row):
     if product < 100:
         product += 10
     # lambda sets floats to 2 decimal places
-    rounded_float = lambda x: "{:.2f}".format(x)
+    rounded_float = lambda x: "{:.2f}".format(x)  # noqa
     return (int(row[0]), rounded_float(product))
 
 
