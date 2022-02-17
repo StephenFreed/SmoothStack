@@ -13,6 +13,7 @@ try:
             for elm in row:
                 stripped_row.append(elm.strip())
             book_shop_list.append(stripped_row)
+
 except Exception as e:
     print("Problem Importing From CSV File")
     print(e)
