@@ -74,3 +74,49 @@ CSAT: 74.40%
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 23:00:28 02-14-2022 - [INFO] - Application Successfully Ran
+10:47:32 02-15-2022 - [INFO] - 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Successfully Parsed Excel File: expedia_report_monthly_march_2018.xlsx
+Data From Worksheet: Summary Rolling MoM
+~~~ For the Month of March in 2018 ~~~
+Calls Offered: 22343
+Abandon after 30s: 3.05%
+FCR: 86.00%
+DSAT: 18.00%
+CSAT: 74.40%
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+10:47:32 02-15-2022 - [INFO] - Application Successfully Ran
+10:48:22 02-15-2022 - [INFO] - Application Was Successfully Closed
+10:48:39 02-15-2022 - [ERROR] - File Chosen Has Incorrect Date Formatting
+10:48:40 02-15-2022 - [ERROR] - File Chosen Has Month Incorrectly Formatted In Name
+10:48:40 02-15-2022 - [ERROR] - File Chosen Was Formatted Improperly
+10:48:41 02-15-2022 - [ERROR] - File Chosen Has Incorrect Date Formatting
+10:48:43 02-15-2022 - [ERROR] - Selected File Number Was Out Of Range Of Choices
+10:48:48 02-15-2022 - [ERROR] - File Chosen Is Not A '.xlsx' Excel File
+10:48:50 02-15-2022 - [INFO] - 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Successfully Parsed Excel File: expedia_report_monthly_march_2018.xlsx
+Data From Worksheet: Summary Rolling MoM
+~~~ For the Month of March in 2018 ~~~
+Calls Offered: 22343
+Abandon after 30s: 3.05%
+FCR: 86.00%
+DSAT: 18.00%
+CSAT: 74.40%
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+10:48:50 02-15-2022 - [INFO] - Application Successfully Ran
+15:05:24 02-15-2022 - [INFO] - 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Successfully Parsed Excel File: expedia_report_monthly_march_2018.xlsx
+Data From Worksheet: Summary Rolling MoM
+~~~ For the Month of March in 2018 ~~~
+Calls Offered: 22343
+Abandon after 30s: 3.05%
+FCR: 86.00%
+DSAT: 18.00%
+CSAT: 74.40%
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+15:05:24 02-15-2022 - [INFO] - Application Successfully Ran
