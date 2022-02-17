@@ -77,7 +77,7 @@ print("~~~~ factorial ~~~~")
 while True:
     try:
         factorial_number = int(input("Enter Whole Number For Factorial: "))
-    except:
+    except:  # noqa
         print("This is not a whole number. Please enter number.")
     else:
         factorial_answer = 1
@@ -92,7 +92,7 @@ print("~~~~ integral number dictionary ~~~~")
 while True:
     try:
         integral_number = int(input("Enter Number To Create Dictionary: "))
-    except:
+    except:  # noqa
         print("This is not a whole number. Please enter number.")
     else:
         integral_number_answer = {}
@@ -104,7 +104,7 @@ while True:
 
 # generate list and tuple
 print("~~~~ generate list and tuple ~~~~")
-comma_seperated_numbers = input("Enter List of Comma-Seperated Numbers: ").replace(" ", "") # strips white space
+comma_seperated_numbers = input("Enter List of Comma-Seperated Numbers: ").replace(" ", "")  # strips white space
 split_list = comma_seperated_numbers.split(",")
 print(split_list)
 print(tuple(split_list))

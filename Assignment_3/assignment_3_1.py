@@ -45,7 +45,7 @@ while guess:
         else:
             print(f"You guessed the correct random number {random_number}")
             guess = False
-    except:
+    except:  # noqa 
         print("Please enter an integer: ")
 
 # 4 and 5
@@ -77,7 +77,7 @@ odd_numbers = 0
 my_boolean = True
 while my_boolean:
     try:
-        comma_seperated_numbers = input("Enter List of Comma-Seperated Numbers: ").replace(" ", "") # strips white space
+        comma_seperated_numbers = input("Enter List of Comma-Seperated Numbers: ").replace(" ", "")  # noqa strips white space
         split_list = comma_seperated_numbers.split(",")
         for num in split_list:
             if (int(num) % 2 == 0):
@@ -86,13 +86,13 @@ while my_boolean:
                 odd_numbers += 1
         print(f"There are {even_numbers} even numbers and {odd_numbers} odd numbers.")
         my_boolean = False
-    except:
+    except:  # noqa
         print("Please enter only integers...")
 
 # 8
 print("~~~~ 8 ~~~~")
 
-datalist = [1452, 11.23, 1+2j, True, 'w3resource', (0, -1), [5, 12], {"class":'V', "section":'A'}]
+datalist = [1452, 11.23, 1+2j, True, 'w3resource', (0, -1), [5, 12], {"class": 'V', "section": 'A'}]
 for element in datalist:
     print(f"{element} is of type {type(element)}.")
 
