@@ -214,3 +214,16 @@ CSAT: 74.40%
 22:07:23 02-18-2022 - [ERROR] - A Known Exception Was Handled | Application Could Not Finish
 22:07:45 02-18-2022 - [ERROR] - Error While Building successful_log_string In parse_excel_functions.py
 22:07:45 02-18-2022 - [ERROR] - A Known Exception Was Handled | Application Could Not Finish
+22:40:18 02-18-2022 - [INFO] - 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Successfully Parsed Excel File: expedia_report_monthly_march_2018.xlsx
+Data From Worksheet: Summary Rolling MoM
+~~~ For the Month of March in 2018 ~~~
+Calls Offered: 22343
+Abandon after 30s: 3.05%
+FCR: 86.00%
+DSAT: 18.00%
+CSAT: 74.40%
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+22:40:18 02-18-2022 - [INFO] - Application Successfully Ran
