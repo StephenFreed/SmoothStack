@@ -6,10 +6,29 @@ import openpyxl
 import logging
 
 
-# custom error to handle if anything fails during function call
-# error is called after known handled exceptions to show user and stop function
+# custom error to handle if anything fails during parsing of excel file
+# error is called after known handled exceptions so the program does not crash
+# errors are logged and then printed to the user for information on what happened
 class ProgramError(Exception):
     pass
+
+
+# validate datetime cell and validate month spelled out
+def validate_datetime(cell_string) -> bool:
+    return True
+    date_format = "%Y-%m-%d %H:%M:%S"
+    try:
+        # checks if cell is not empty and that date is in correct format
+        if cell_obj.value is not None and datetime.datetime.strptime(cell_string, date_format):
+            date_and_row = (cell_string, row_number)
+            parsed_date_list.append(date_and_row)
+    # passes if strptime function fails on invalid date format
+    except:  # noqa
+        pass
+
+
+def validate_month_string(cell_string) -> bool:
+    return True
 
 
 def parse_excel_data(file_name_to_parse: str):
@@ -19,19 +38,19 @@ def parse_excel_data(file_name_to_parse: str):
     Returns data from that month and year in the excel file.
     """
 
-    # splits file name on "_" and "." into list to validate
-    file_name_list = re.split('_|\\.', file_name_to_parse)
-    month_from_filename = file_name_list[3]
-    year_from_filename = file_name_list[4]
-
-    # loads excel workbook
-    wb_obj = openpyxl.load_workbook(
-        "/Users/stephenfreed/Projects/SmoothStack/Mini_Project_2/excel_files/{}".format(file_name_to_parse)
-        )
-
     # try block if anything goes wrong with parsing logs and displays to User
     # this keeps from program reporting wrong details at the end
     try:
+
+        # splits file name on "_" and "." into list to validate
+        file_name_list = re.split('_|\\.', file_name_to_parse)
+        month_from_filename = file_name_list[3]
+        year_from_filename = file_name_list[4]
+
+        # loads excel workbook
+        wb_obj = openpyxl.load_workbook(
+            "/Users/stephenfreed/Projects/SmoothStack/Mini_Project_2/excel_files/{}".format(file_name_to_parse)
+            )
 
         # gets list of sheets in workbook
         if "VOC Rolling MoM" in wb_obj.sheetnames:
@@ -47,18 +66,10 @@ def parse_excel_data(file_name_to_parse: str):
             raise ProgramError
 
 
-        def validate_datetime(cell_string) -> bool:
-            pass
 
-
-        def validate_month_string(cell_string) -> bool:
-            pass
-
-        # loop through top row looking for proper date
+        # find column number
+        # loop through top row looking for proper date(2 choices)
         # look for "Full Name" or parse date 01 index is month 0 index is year
-        # find column we need to get data from
-        # builds list of tuples with header name and column number/skips invalid cells
-        # if go through entire loop need to say was not found
         column_to_parse = None
         m_column = sheet_obj.max_column  # type: ignore
         for column_number in range(1, m_column + 1):
@@ -75,57 +86,36 @@ def parse_excel_data(file_name_to_parse: str):
                 print("\n(ERROR) Error While Building Header,Column List In parse_excel_functions.py")
                 raise ProgramError
         if column_to_parse == None:
+            pass
             # todo throw error month not found
 
 
-        # build list of row one strings / split those strings into lists by " "
-        # search for 0 index match on names we are looking for
-
-
-        # builds list of valid dates and the rows they were in/skips invalid rows
-        parsed_date_list = []
+        # loop through first row looking for correct rows(3 choices)
+        # build tuple (row_name, row_number)
+        row_to_parse = []
         m_row = sheet_obj.max_row  # type: ignore // gets max row number
         for row_number in range(1, m_row + 1):
             cell_obj = sheet_obj.cell(row=row_number, column=1)  # type: ignore
             cell_string = str(cell_obj.value).strip()  # object to string
-            date_format = "%Y-%m-%d %H:%M:%S"
             try:
-                # checks if cell is not empty and that date is in correct format
-                if cell_obj.value is not None and datetime.datetime.strptime(cell_string, date_format):
-                    date_and_row = (cell_string, row_number)
-                    parsed_date_list.append(date_and_row)
+                if cell_obj.value is None:
+                    continue
+
+                split_string_list = re.split(' ', date)  # split string into list on space
+                if split_string_list[0].title() == "Promoters" or 
+                split_string_list[0].title() == "Passives" or
+            split_string_list[0].title() == "Dectractors":
+                row_to_parse.append((split_string_list[0].title(), row_number))
+
             # passes if strptime function fails on invalid date format
             except:  # noqa
                 pass
 
-        # loops through parsed_date_list and finds row we need to parse
-        row_of_info = None  # row to parse info from
-        for date, row in parsed_date_list:  # unpacks tuple
-            try:
-                split_date_list = re.split('-| ', date)  # split date into list on "-" and space
-                month_to_number_dict = {
-                    "january": "01",
-                    "february": "02",
-                    "march": "03",
-                    "april": "04",
-                    "may": "05",
-                    "june": "06",
-                    "july": "07",
-                    "august": "08",
-                    "september": "09",
-                    "october": "10",
-                    "november": "11",
-                    "december": "12"
-                }
-                # checks if year from filename matches year in cell
-                # checks if month in file name matches month in cell through month_to_number_dict
-                if (split_date_list[0] == year_from_filename and
-                   split_date_list[1] == month_to_number_dict[month_from_filename]):
-                    row_of_info = row  # row number we need to parse
-            except: # noqa
-                logging.error("Finding Row With Month And Year Failed. May Not Be In File...")
-                print("\nWe Did Not Find The Month and Year To Parse In This Excel Workbook")
-                raise ProgramError
+        if len(row_to_parse) != 3:
+            # todo error missing row fields
+
+
+
 
 
         # builds logging output for successful parsing of data
