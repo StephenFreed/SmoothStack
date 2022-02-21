@@ -2,12 +2,14 @@ import re
 import logging
 
 
-# validation function to validate file name is in correct format to parse from
+# validation function that validates file name is in correct format to parse from
 def is_valid_file_name(file_name: str) -> str:
 
     """
-    Validation function to validate file name is in correct format to parse
+    Validation function to validate file name is in correct format to parse from
     Valid Format: "expedia_report_monthly_{month in lowercase}_{4 digit year}.xlsx"
+    Returns "valid_file_name" or error message to print to user
+    Logs errors to logging/log_file.txt
     """
 
     # list of months to validat month
@@ -61,3 +63,93 @@ def is_valid_file_name(file_name: str) -> str:
     # returns is a valid file name
     else:
         return "valid_file_name"
+
+
+# gets list of sheets in workbook and checks if correct sheet is present
+def check_for_sheet(wb_obj) -> tuple:
+
+    """
+    Gets a list of sheet names from openpyxl workbook object
+    Loops through that list looking for "VOC Rolling MoM"
+    Returns tuple[0] - True for Found and False for not Found
+    Return tuple[1] - index of worksheet in the list or 99 for not found
+
+    """
+
+    # loops through worksheets to find target sheet and index in list
+    for i, sheet_name in enumerate(wb_obj.sheetnames):
+        if sheet_name == "VOC Rolling MoM":
+            return (True, i)
+
+    # if not found logs error, prints to user and returns not found tuple info
+    logging.error("'VOC Rolling MoM' Sheet Was Not Found In Workbook")
+    print("\n(ERROR) 'VOC Rolling MoM' Sheet Was Not Found In Workbook")
+    return(False, 99)
+
+
+# validates if cell date(month and year) match data parsed from file name
+def validate_datetime(cell_string, month_from_filename, year_from_filename) -> bool:
+
+    """
+    Valicates if cell string date in format: 2017-12-01 00:00:00
+    Matches month and year parsed from file name
+    """
+
+    # month to number dict to varify month of date format: 2017-12-01 00:00:00
+    month_to_number_dict = {
+                        "january": "01",
+                        "february": "02",
+                        "march": "03",
+                        "april": "04",
+                        "may": "05",
+                        "june": "06",
+                        "july": "07",
+                        "august": "08",
+                        "september": "09",
+                        "october": "10",
+                        "november": "11",
+                        "december": "12"
+                    }
+
+    # split date into list on "-" and space
+    split_date_list = re.split('-| ', cell_string)
+
+    # checks year and month match parsed data from file name
+    if (
+        split_date_list[0] == year_from_filename and
+        split_date_list[1] == month_to_number_dict[month_from_filename]
+         ):
+        return True
+    else:
+        return False
+
+
+# validates if cell date(month only) match data parsed from file name
+def validate_month_string(cell_string, month_from_filename) -> bool:
+
+    """
+    Valicates if cell string in format: January (Month with no date)
+    Matches month parsed from file name
+    """
+
+    # list of months to query from
+    list_of_months = [
+        "january",
+        "february",
+        "march",
+        "april",
+        "may",
+        "june",
+        "july",
+        "august",
+        "september",
+        "october",
+        "november",
+        "december"
+    ]
+
+    # check if cell string is in valid month list / checks if cell string is equal to month in file name
+    if list_of_months.count(cell_string.lower()) == 1 and month_from_filename.lower() == cell_string.lower():
+        return True
+    else:
+        return False
