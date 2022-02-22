@@ -4,6 +4,7 @@ import subprocess
 import openpyxl
 import logging
 import validation_functions as validate
+import file_functions as ff
 
 
 class ProgramError(Exception):
@@ -151,10 +152,19 @@ def parse_excel_data(file_name_to_parse: str):
 
     except ProgramError:
         logging.error("A Known Exception Was Handled | Application Could Not Finish")
-        print("The Known Exception Above Was Handled ^^^\nApplication Could Not Finish\nPlease Check Log File...")
+        logging.info(f"File:{file_name_to_parse} Was Moved To error_files/invalid_file Directory")
+        ff.move_invalid_file(file_name_to_parse)
+        print(
+                "The Known Exception Above Was Handled ^^^\n"
+                "Application Could Not Finish\n"
+                "Please Check Log File...\n"
+                "File Was Moved To error_files/invalid_file Directory\n"
+              )
 
     except Exception as e:
         logging.error("The Program Could Not Get Excel Data Successfully")
+        logging.info(f"File:{file_name_to_parse} Was Moved To error_files/invalid_file Directory")
+        ff.move_invalid_file(file_name_to_parse)
         print(e)
         print("The Program Could Not Get Excel Data Successfully\nTry Another File\nClosed Application...")
 
@@ -170,5 +180,14 @@ def parse_excel_data(file_name_to_parse: str):
         logging.info("Application Successfully Ran")
 
         print("~~~~~~~~~~~~~~~~~~~~~~\n ~ Opening Log File ~\n~~~~~~~~~~~~~~~~~~~~~~")
+
         # time.sleep(1)
-        # subprocess.call(["open", "/Users/stephenfreed/Projects/SmoothStack/Mini_Project_1/logging/log_file.txt"])
+        # subprocess.call(["open", "/Users/stephenfreed/Projects/SmoothStack/Mini_Project_2/logging/log_file.txt"])
+
+        # moves file from excel_files to logging/processed_files directory
+        ff.move_processed_file(file_name_to_parse)
+
+        # adds file name to files_processed.txt
+        processed_source = "/Users/stephenfreed/Projects/SmoothStack/Mini_Project_2/logging/processed_files/files_processed.txt"  # noqa
+        with open(processed_source, "a") as fp:
+            fp.write(file_name_to_parse)
