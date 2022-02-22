@@ -1,4 +1,5 @@
 import os
+import shutil
 import logging
 
 
@@ -87,3 +88,15 @@ def move_processed_file(file_name_to_parse):
         print(e)
         logging.error("Problem Moving File To logging/processed_files Directory")
         print("\n(ERROR) Problem Moving File To logging/processed_files Directory")
+
+
+# move test files from exel_files_repo directory to excel_files directory
+def move_excel_repo_files():
+
+    repo_dir = "/Users/stephenfreed/Projects/SmoothStack/Mini_Project_2/excel_files_repo/"
+    repo_files = os.listdir(repo_dir)
+    for file_name in repo_files:
+        full_file_path = os.path.join(repo_dir, file_name)
+        if os.path.isfile(full_file_path):
+            excel_dir = "/Users/stephenfreed/Projects/SmoothStack/Mini_Project_2/excel_files/"
+            shutil.copy(full_file_path, excel_dir)

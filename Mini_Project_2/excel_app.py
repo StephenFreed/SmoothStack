@@ -28,6 +28,7 @@ if len(excel_file_list) < 1:
                                    "~~~ There Are No Files In The Directory To Parse ~~~\n"
                                    "~~~ Add Files To excel_file Directory ~~~\n"
                                    "\nChoose 0 To Quit Application"
+                                   "\nChoose 2 To Copy Repo Excel Files\n"
                                    )
 
 else:
@@ -39,6 +40,7 @@ else:
                                     "~~~~~~~~~~~~~~~~~~~~~~\n"
                                     "\nChoose 0 To Quit Application"
                                     "\nChoose 1 To Run Application\n"
+                                    "Choose 2 To Copy Repo Excel Files\n"
                                     )
 
 # while loop to keep active until valid input or user quits
@@ -58,8 +60,15 @@ while selection:
             # terminates while
             selection = False
 
+        elif file_selection_number == 2:
+            ff.move_excel_repo_files()
+            logging.info("Copied Repo Excel Files Into Excel Directory")
+            print("\nCopying Repo Files To Excel Files...\n")
+            # terminates while
+            selection = False
+
         # check if number is 0 or 1
-        elif file_selection_number < 0 or file_selection_number > 1:
+        elif file_selection_number < 0 or file_selection_number > 2:
             logging.error("Selected Invalid Number To Start or Quit Application")
             print("\n(Error!) Please Select 0 or 1...")
 
