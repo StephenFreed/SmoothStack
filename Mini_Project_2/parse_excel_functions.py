@@ -1,16 +1,16 @@
 import re
 import openpyxl
-import logging
 import validation_functions as validate
 import file_functions as ff
+import logging
 
 
 class ProgramError(Exception):
 
     """
-    custom error to handle if anything fails during parsing of excel file
-    error is called after known handled exceptions so the program does not crash
-    errors are logged and then printed to the user for information on what happened
+    Custom error to handle if anything fails during parsing of excel file
+    Error is called after known handled exceptions so the program does not crash
+    Errors are logged and then printed to the user for information on what happened
     """
     pass
 
@@ -19,7 +19,10 @@ class ProgramError(Exception):
 def parse_excel_data(file_name_to_parse: str):
 
     """
-    Todo: write detailed discription of what this function does
+    Function finds target month and year(if present) column to parse
+    Then it searches for target rows by name to identify rows to parse
+    It uses this data to log and print to user target information
+    Formated in the correct way
     """
 
     # try block if anything goes wrong with parsing of file logs and displays to User
@@ -141,6 +144,7 @@ def parse_excel_data(file_name_to_parse: str):
                 # check what level
                 row_rating = validate.check_row_rating(row_name, target_row_column_cell)
                 successful_log_string += "{}:{} {}\n".format(row_name, target_row_column_cell, row_rating)
+
             except: # noqa
                 logging.error("Error While Building successful_log_string In parse_excel_functions.py")
                 print("\n(ERROR) Error While Building successful_log_string In parse_excel_functions.py")
@@ -179,5 +183,5 @@ def parse_excel_data(file_name_to_parse: str):
 
         # moves file from excel_files to logging/processed_files directory
         # adds entry in files_processed.txt
+        logging.info(f"Moving: {file_name_to_parse} to processed_files Directory")
         ff.move_processed_file(file_name_to_parse)
-

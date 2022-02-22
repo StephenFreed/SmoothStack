@@ -1,3 +1,4 @@
+import os
 import re
 import logging
 
@@ -30,7 +31,10 @@ def is_valid_file_name(file_name: str) -> str:
 
     # splits file name on "_" and "." into list to validate
     file_name_list = re.split('_|\\.', file_name)
-    print(file_name_list)
+
+    # sets variables to check in later elif
+    file_name_list_0 = file_name_list[0]
+    file_name_list_1 = file_name_list[1]
 
     # checks proper length
     if len(file_name_list) != 6:
@@ -44,11 +48,6 @@ def is_valid_file_name(file_name: str) -> str:
     elif file_name_list[5] != "xlsx":
         logging.error("File Chosen Is Not A '.xlsx' Excel File")
         return f"\n(ERROR: Invalid File Extension) For File: {file_name}\n Must End in: .xlsx"
-
-    # checks for expedia_report
-    elif file_name_list[0].lower() == "expedia" and file_name_list[1].lower() == "report":
-        logging.error("File Chosen Does not have expedia_report In Name Where It should Be")
-        return f"\n(ERROR: File Chosen Does not have expedia_report in Name Where It should Be"
 
     # checks for valid month
     elif list_of_months.count(file_name_list[3]) != 1:
@@ -65,6 +64,11 @@ def is_valid_file_name(file_name: str) -> str:
                 f"\n(ERROR: Year Invalid) For File: {file_name}\n"
                 "Format: expedia_report_monthly_{{month in lowercase}}_{{4 digit year}}.xlsx"
                 )
+
+    # checks for expedia_report
+    elif file_name_list_0 != "expedia" or file_name_list_1 != "report":
+        logging.error("File Chosen Does not have expedia_report In Name Where It should Be")
+        return "\n(ERROR: File Chosen Does not have expedia_report in Name Where It should Be"
 
     # returns is a valid file name
     else:
@@ -187,3 +191,47 @@ def check_row_rating(row_name, target_row_column_cell) -> str:
             return "Bad (Lower than 100)"
     else:
         return "No Rating Found For Row"
+
+
+# checks if file is in error_files directory
+def contained_in_error_files(file_name_2) -> bool:
+
+    """
+    Checks to see if current file to parse is already logged in error_files.txt
+    Returns boolean to called function (If found will not parse file)
+    If found in error_files.txt logs and prints to user
+    Then removes the file from current directory
+    """
+
+    with open("/Users/stephenfreed/Projects/SmoothStack/Mini_Project_2/error_files/error_files.txt", "r") as ef:
+        for file in ef:
+            if file.strip() == file_name_2:
+                logging.error("File Name Was Already Moved To Error Files Directory")
+                print("\n(ERROR) File Already In Error Files Directory")
+                os.remove(f"/Users/stephenfreed/Projects/SmoothStack/Mini_Project_2/excel_files/{file_name_2}")
+                logging.info("Removed File From Excel Directory")
+                print("Removed File From Directory\nMoving To Next File...")
+                return True
+        return False
+
+
+# checks if file is in processed_files directory
+def contained_in_processed_files(file_name_2) -> bool:
+
+    """
+    Checks to see if current file to parse is already logged in files_processed.txt
+    Returns boolean to called function (If found will not parse file)
+    If found in files_processed.txt logs and prints to user
+    Then removes the file from current directory
+    """
+
+    with open("/Users/stephenfreed/Projects/SmoothStack/Mini_Project_2/logging/processed_files/files_processed.txt", "r") as pf:  # noqa
+        for file in pf:
+            if file.strip() == file_name_2:
+                logging.error("File Name Was Already Moved To Processed Files Directory")
+                print("\n(ERROR) File Already In Processed Files Directory")
+                os.remove(f"/Users/stephenfreed/Projects/SmoothStack/Mini_Project_2/excel_files/{file_name_2}")
+                logging.info("Removed File From Excel Directory")
+                print("Removed File From Directory\nMoving To Next File...")
+                return True
+        return False
