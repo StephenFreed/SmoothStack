@@ -72,14 +72,13 @@ def check_for_sheet(wb_obj) -> tuple:
     Gets a list of sheet names from openpyxl workbook object
     Loops through that list looking for "VOC Rolling MoM"
     Returns tuple[0] - True for Found and False for not Found
-    Return tuple[1] - index of worksheet in the list or 99 for not found
-
+    Return tuple[1] - string name of worksheet
     """
 
     # loops through worksheets to find target sheet and index in list
-    for i, sheet_name in enumerate(wb_obj.sheetnames):
+    for sheet_name in wb_obj.sheetnames:
         if sheet_name == "VOC Rolling MoM":
-            return (True, i)
+            return (True, sheet_name)
 
     # if not found logs error, prints to user and returns not found tuple info
     logging.error("'VOC Rolling MoM' Sheet Was Not Found In Workbook")
@@ -153,3 +152,32 @@ def validate_month_string(cell_string, month_from_filename) -> bool:
         return True
     else:
         return False
+
+
+# returns rating for specific row / rating is used to log and print to user
+def check_row_rating(row_name, target_row_column_cell) -> str:
+
+    """
+    Uses the row name and target cell data to return a rating
+    Used to log and print to user
+    """
+
+    if row_name == "Promoters":
+        if int(target_row_column_cell) >= 200:
+            return "Good (200 or Greater)"
+        else:
+            return "Bad (Lower than 200)"
+
+    elif row_name == "Passives":
+        if int(target_row_column_cell) >= 100:
+            return "Good (100 or Greater)"
+        else:
+            return "Bad (Lower than 100)"
+
+    elif row_name == "Dectractors":
+        if int(target_row_column_cell) >= 100:
+            return "Good (100 or Greater)"
+        else:
+            return "Bad (Lower than 100)"
+    else:
+        return "No Rating Found For Row"

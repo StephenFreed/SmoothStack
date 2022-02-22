@@ -1,10 +1,9 @@
-import time
 import re
-import datetime
+import time
 import subprocess
 import openpyxl
-import validation_functions as validate
 import logging
+import validation_functions as validate
 
 
 class ProgramError(Exception):
@@ -16,6 +15,7 @@ class ProgramError(Exception):
     """
     pass
 
+
 # main function to parse target excel data from workbook
 def parse_excel_data(file_name_to_parse: str):
 
@@ -23,8 +23,8 @@ def parse_excel_data(file_name_to_parse: str):
     Todo: write detailed discription of what this function does
     """
 
-    # try block if anything goes wrong with parsing logs and displays to User
-    # this keeps from program reporting wrong details at the end
+    # try block if anything goes wrong with parsing of file logs and displays to User
+    # this keeps from program reporting wrong details at the end or crashing
     try:
 
         # splits file name on "_" and "." into list to validate
@@ -45,8 +45,8 @@ def parse_excel_data(file_name_to_parse: str):
             raise ProgramError
 
         # if valid sets sheet index in list and proper sheet object to parse from
-        sheet_list_index = sheet_present_tuple[1]
-        sheet_obj = wb_obj[sheet_present_tuple[0]]
+        sheet_name = sheet_present_tuple[1]
+        sheet_obj = wb_obj[sheet_name]
 
         # finds column number of proper month and year(if present in cell) to parse from
         # 2 valid cell scenarios: full month spelled out or datetime
@@ -85,17 +85,26 @@ def parse_excel_data(file_name_to_parse: str):
             print("\n(ERROR) No Valid Matching Month and Year(if present) Cell Was Found In parse_excel_functions.py")
             raise ProgramError
 
-        # loop through first row looking for correct rows(3 choices)
-        # build tuple (row_name, row_number)
+        # find rows to parse by building list of tuples (row_name, row_number)
         rows_to_parse_list = []
-        m_row = sheet_obj.max_row  # type: ignore // gets max row number
+        m_row = sheet_obj.max_row
+
+        # loop through first column looking for correct rows to parse (3 choices)
         for row_number in range(1, m_row + 1):
-            cell_obj = sheet_obj.cell(row=row_number, column=1)  # type: ignore
-            cell_string = str(cell_obj.value).strip()  # object to string
+
             try:
+                # gets cell info and turns it into a string
+                cell_obj = sheet_obj.cell(row=row_number, column=1)  # type: ignore
+                cell_string = str(cell_obj.value).strip()  # object to string
+
+                # skips blank cells
                 if cell_obj.value is None:
                     continue
-                split_string_list = re.split(' ', cell_string)  # split string into list on space
+
+                # split string into list on space
+                split_string_list = re.split(' ', cell_string)
+
+                # check if start of cell is rows we are looking for
                 if (
                     split_string_list[0].title() == "Promoters" or
                     split_string_list[0].title() == "Passives" or
@@ -103,34 +112,36 @@ def parse_excel_data(file_name_to_parse: str):
                      ):
                     rows_to_parse_list.append((split_string_list[0].title(), row_number))
 
-            # passes if strptime function fails on invalid date format
-            except Exception as e:  # noqa
-                print("something wrong finding rows")
-                print(e)
-                pass
+            except:  # noqa
+                logging.error("While Finding Matching Target Rows In parse_excel_functions.py")
+                print("\n(ERROR) While Finding Matching Target Rows In parse_excel_functions.py")
+                raise ProgramError
 
+        # checks that all target rows are likely found correctly
         if len(rows_to_parse_list) != 3:
-            # todo error missing row fields
-            print("error not enough rows found")
+            logging.error("rows_to_parse_list Is Not The Correct Length In parse_excel_functions.py")
+            print("\n(ERROR) rows_to_parase_list Is of Wrong Length - Likely Missing Target Rows To Parse")
+            raise ProgramError
 
         # builds logging output for successful parsing of data
-        list_of_worksheets = wb_obj.sheetnames  # get workbook list of worksheets
         successful_log_string = ""
         successful_log_string += "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
         successful_log_string += "Successfully Parsed Excel File: {}\n".format(file_name_to_parse)
-        successful_log_string += "Data From Worksheet: {}\n".format(list_of_worksheets[sheet_list_index])
+        successful_log_string += "Data From Worksheet: {}\n".format(sheet_name)
         successful_log_string += (
                                   "~~~ For the Month of {} in {} ~~~\n"
                                   .format(month_from_filename.capitalize(), year_from_filename)
                                   )
 
-        # loops through target row concatenating header and row info
+        # loops through target rows to parse list returning data
         for row_name, row_number in rows_to_parse_list:  # unpacks tuple
+
             try:
                 target_row_column_cell_obj = sheet_obj.cell(row=row_number, column=column_to_parse)  # type: ignore
                 target_row_column_cell = str(target_row_column_cell_obj.value).strip()
                 # check what level
-                successful_log_string += "{}: {}: say something".format(row_name, target_row_column_cell)
+                row_rating = validate.check_row_rating(row_name, target_row_column_cell)
+                successful_log_string += "{}:{} {}\n".format(row_name, target_row_column_cell, row_rating)
             except: # noqa
                 logging.error("Error While Building successful_log_string In parse_excel_functions.py")
                 print("\n(ERROR) Error While Building successful_log_string In parse_excel_functions.py")
@@ -142,10 +153,10 @@ def parse_excel_data(file_name_to_parse: str):
         logging.error("A Known Exception Was Handled | Application Could Not Finish")
         print("The Known Exception Above Was Handled ^^^\nApplication Could Not Finish\nPlease Check Log File...")
 
-    except Exception as e: # noqa
+    except Exception as e:
         logging.error("The Program Could Not Get Excel Data Successfully")
-        print("The Program Could Not Get Excel Data Successfully\nTry Another File\nClosed Application...")
         print(e)
+        print("The Program Could Not Get Excel Data Successfully\nTry Another File\nClosed Application...")
 
     # displays parsed data to user and logs it if there were no exceptions
     else:
@@ -159,7 +170,5 @@ def parse_excel_data(file_name_to_parse: str):
         logging.info("Application Successfully Ran")
 
         print("~~~~~~~~~~~~~~~~~~~~~~\n ~ Opening Log File ~\n~~~~~~~~~~~~~~~~~~~~~~")
-        time.sleep(1)
-        subprocess.call(["open", "/Users/stephenfreed/Projects/SmoothStack/Mini_Project_1/logging/log_file.txt"])
-
-
+        # time.sleep(1)
+        # subprocess.call(["open", "/Users/stephenfreed/Projects/SmoothStack/Mini_Project_1/logging/log_file.txt"])
