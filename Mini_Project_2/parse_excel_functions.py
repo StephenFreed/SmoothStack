@@ -1,6 +1,4 @@
 import re
-import time
-import subprocess
 import openpyxl
 import logging
 import validation_functions as validate
@@ -171,23 +169,15 @@ def parse_excel_data(file_name_to_parse: str):
     # displays parsed data to user and logs it if there were no exceptions
     else:
 
-        print("\n~ Application Was Successful ~")
+        print("\n~ File Parsed Successfully ~")
 
         # log and print parse info
         logging.info(successful_log_string)
         print(successful_log_string)
 
-        logging.info("Application Successfully Ran")
-
-        print("~~~~~~~~~~~~~~~~~~~~~~\n ~ Opening Log File ~\n~~~~~~~~~~~~~~~~~~~~~~")
-
-        # time.sleep(1)
-        # subprocess.call(["open", "/Users/stephenfreed/Projects/SmoothStack/Mini_Project_2/logging/log_file.txt"])
+        logging.info("File Parsed Successfully")
 
         # moves file from excel_files to logging/processed_files directory
+        # adds entry in files_processed.txt
         ff.move_processed_file(file_name_to_parse)
 
-        # adds file name to files_processed.txt
-        processed_source = "/Users/stephenfreed/Projects/SmoothStack/Mini_Project_2/logging/processed_files/files_processed.txt"  # noqa
-        with open(processed_source, "a") as fp:
-            fp.write(file_name_to_parse)

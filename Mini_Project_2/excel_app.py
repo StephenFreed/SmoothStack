@@ -1,8 +1,12 @@
 import os
+import time
+import subprocess
 import validation_functions as validate
 import parse_excel_functions as pe
 import file_functions as ff
 import logging
+
+# todo check if file is infiles_processed or error_files
 
 # structures logging formatting to log_file
 logging.basicConfig(
@@ -29,7 +33,6 @@ if len(excel_file_list) < 1:
                                    )
 
 else:
-
     # loops through file names to print
     for file_name in excel_file_list:
         input_display_list_of_files += f"File: {file_name}\n"
@@ -64,31 +67,29 @@ while selection:
 
         else:
 
+            # terminates while
+            selection = False
+
+            # loops through files in excel_files directory
             for file_name_2 in excel_file_list:
 
-                # calls is_valid_file_name function in validate module
-                # if invalid logs error to log file in validation_functions module
-                # returns custom log error to print to user if invalid
+                # validates file name
+                print(f"Validating: {file_name_2}")
                 is_valid_file = validate.is_valid_file_name(file_name_2)
-                if is_valid_file != "valid_file_name":
-                    # then moves file to error_files/invalid_name dir
-                    ff.move_invalid_filename(file_name_2)
-
-                logging.error("File Name Is Not Valid")
-                print("\n(Error!) File name is not valid\nMoving {file_name_2} Into invalid_name Directory")
-
-                # adds file name to error_file.txt
-                invalid_name_source = f"SmoothStack/Mini_Project_2/error_files/invalid_name/{file_name_2}"
-                with open(invalid_name_source, "a") as invalid_name_source:
-                    invalid_name_source.write(file_name_2)
 
                 # if file name is valid runs parsing function on excel file
-                # parsing functions in module parse_excel_functions
-                else:
+                if is_valid_file == "valid_file_name":
                     logging.info(f"Parsing Valid File Name: {file_name_2}")
+                    print(f"Parsing Valid File Name: {file_name_2}")
                     pe.parse_excel_data(file_name_2)
                     # terminates while
-                    selection = False
+
+                else:
+                    # logs and prints to user
+                    logging.error("File Name Is Not Valid")
+                    print(f"\n(Error!) File name is not valid\nMoving {file_name_2} Into invalid_name Directory")
+                    # then moves file to error_files/invalid_name dir / adds name to error_files.txt
+                    ff.move_invalid_filename(file_name_2)
 
     except IndexError:  # out of range
         logging.error("Selected File Number Was Out Of Range Of Choices")
@@ -98,3 +99,12 @@ while selection:
         logging.error("There Was A Problem Running The Application")
         print(e)
         print("\n(Error!) There Was A Problem Running The Application...")
+
+    else:
+
+        print("\n~ Application Was Successful ~")
+
+        print("~~~~~~~~~~~~~~~~~~~~~~\n ~ Opening Log File ~\n~~~~~~~~~~~~~~~~~~~~~~")
+
+        # time.sleep(1)
+        # subprocess.call(["open", "/Users/stephenfreed/Projects/SmoothStack/Mini_Project_2/logging/log_file.txt"])

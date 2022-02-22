@@ -1,6 +1,7 @@
-k21:06:31 02-21-2022 - [INFO] - 
+00:31:46 02-22-2022 - [INFO] - Parsing Valid File Name: deleted_report_monthly_march_2018.xlsx
+00:31:46 02-22-2022 - [INFO] - 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Successfully Parsed Excel File: expedia_report_monthly_march_2018.xlsx
+Successfully Parsed Excel File: deleted_report_monthly_march_2018.xlsx
 Data From Worksheet: VOC Rolling MoM
 ~~~ For the Month of March in 2018 ~~~
 Promoters:279 Good (200 or Greater)
@@ -8,11 +9,26 @@ Passives:21 Bad (Lower than 100)
 Dectractors:33 Bad (Lower than 100)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-21:06:31 02-21-2022 - [INFO] - Application Successfully Ran
-21:49:46 02-21-2022 - [INFO] - Parsing Valid File Name: expedia_report_monthly_march_2018.xlsx
-21:49:46 02-21-2022 - [INFO] - 
+00:31:46 02-22-2022 - [INFO] - File Parsed Successfully
+00:31:46 02-22-2022 - [ERROR] - File Chosen Does not have expedia_report In Name Where It should Be
+00:31:46 02-22-2022 - [ERROR] - File Name Is Not Valid
+00:31:46 02-22-2022 - [ERROR] - File Chosen Is Not A '.xlsx' Excel File
+00:31:46 02-22-2022 - [ERROR] - File Name Is Not Valid
+00:31:46 02-22-2022 - [ERROR] - File Chosen Does not have expedia_report In Name Where It should Be
+00:31:46 02-22-2022 - [ERROR] - File Name Is Not Valid
+00:31:46 02-22-2022 - [ERROR] - File Chosen Does not have expedia_report In Name Where It should Be
+00:31:46 02-22-2022 - [ERROR] - File Name Is Not Valid
+00:31:46 02-22-2022 - [ERROR] - File Chosen Does not have expedia_report In Name Where It should Be
+00:31:46 02-22-2022 - [ERROR] - File Name Is Not Valid
+00:31:46 02-22-2022 - [ERROR] - File Chosen Was Formatted Improperly
+00:31:46 02-22-2022 - [ERROR] - File Name Is Not Valid
+00:31:46 02-22-2022 - [ERROR] - File Chosen Does not have expedia_report In Name Where It should Be
+00:31:46 02-22-2022 - [ERROR] - File Name Is Not Valid
+00:34:25 02-22-2022 - [INFO] - Application Was Successfully Closed
+00:34:40 02-22-2022 - [INFO] - Parsing Valid File Name: deleted_report_monthly_march_2018.xlsx
+00:34:40 02-22-2022 - [INFO] - 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Successfully Parsed Excel File: expedia_report_monthly_march_2018.xlsx
+Successfully Parsed Excel File: deleted_report_monthly_march_2018.xlsx
 Data From Worksheet: VOC Rolling MoM
 ~~~ For the Month of March in 2018 ~~~
 Promoters:279 Good (200 or Greater)
@@ -20,118 +36,18 @@ Passives:21 Bad (Lower than 100)
 Dectractors:33 Bad (Lower than 100)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-21:49:46 02-21-2022 - [INFO] - Application Successfully Ran
-21:49:47 02-21-2022 - [ERROR] - Selected File Choice Was Not A Valid Choice
-21:50:07 02-21-2022 - [INFO] - Application Was Successfully Closed
-21:50:48 02-21-2022 - [INFO] - Parsing Valid File Name: expedia_report_monthly_march_2018.xlsx
-21:50:48 02-21-2022 - [INFO] - 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Successfully Parsed Excel File: expedia_report_monthly_march_2018.xlsx
-Data From Worksheet: VOC Rolling MoM
-~~~ For the Month of March in 2018 ~~~
-Promoters:279 Good (200 or Greater)
-Passives:21 Bad (Lower than 100)
-Dectractors:33 Bad (Lower than 100)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-21:50:48 02-21-2022 - [INFO] - Application Successfully Ran
-21:50:49 02-21-2022 - [ERROR] - Selected File Choice Was Not A Valid Choice
-21:51:02 02-21-2022 - [INFO] - Application Was Successfully Closed
-21:51:49 02-21-2022 - [INFO] - Parsing Valid File Name: expedia_report_monthly_march_2018.xlsx
-21:51:50 02-21-2022 - [INFO] - 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Successfully Parsed Excel File: expedia_report_monthly_march_2018.xlsx
-Data From Worksheet: VOC Rolling MoM
-~~~ For the Month of March in 2018 ~~~
-Promoters:279 Good (200 or Greater)
-Passives:21 Bad (Lower than 100)
-Dectractors:33 Bad (Lower than 100)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-21:51:50 02-21-2022 - [INFO] - Application Successfully Ran
-22:39:52 02-21-2022 - [INFO] - Parsing Valid File Name: expedia_report_monthly_march_2018.xlsx
-22:39:52 02-21-2022 - [INFO] - 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Successfully Parsed Excel File: expedia_report_monthly_march_2018.xlsx
-Data From Worksheet: VOC Rolling MoM
-~~~ For the Month of March in 2018 ~~~
-Promoters:279 Good (200 or Greater)
-Passives:21 Bad (Lower than 100)
-Dectractors:33 Bad (Lower than 100)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-22:39:52 02-21-2022 - [INFO] - Application Successfully Ran
-22:39:52 02-21-2022 - [ERROR] - Selected File Choice Was Not A Valid Choice
-22:40:17 02-21-2022 - [INFO] - Application Was Successfully Closed
-22:41:51 02-21-2022 - [INFO] - Parsing Valid File Name: expedia_report_monthly_march_2018.xlsx
-22:41:51 02-21-2022 - [INFO] - 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Successfully Parsed Excel File: expedia_report_monthly_march_2018.xlsx
-Data From Worksheet: VOC Rolling MoM
-~~~ For the Month of March in 2018 ~~~
-Promoters:279 Good (200 or Greater)
-Passives:21 Bad (Lower than 100)
-Dectractors:33 Bad (Lower than 100)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-22:41:51 02-21-2022 - [INFO] - Application Successfully Ran
-22:41:51 02-21-2022 - [ERROR] - There Was A Problem Running The Application
-22:42:24 02-21-2022 - [INFO] - Application Was Successfully Closed
-22:45:19 02-21-2022 - [INFO] - Parsing Valid File Name: expedia_report_monthly_march_2018.xlsx
-22:45:19 02-21-2022 - [INFO] - 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Successfully Parsed Excel File: expedia_report_monthly_march_2018.xlsx
-Data From Worksheet: VOC Rolling MoM
-~~~ For the Month of March in 2018 ~~~
-Promoters:279 Good (200 or Greater)
-Passives:21 Bad (Lower than 100)
-Dectractors:33 Bad (Lower than 100)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-22:45:19 02-21-2022 - [INFO] - Application Successfully Ran
-22:45:19 02-21-2022 - [ERROR] - There Was A Problem Running The Application
-22:45:31 02-21-2022 - [INFO] - Application Was Successfully Closed
-22:46:39 02-21-2022 - [INFO] - Parsing Valid File Name: expedia_report_monthly_march_2018.xlsx
-22:46:39 02-21-2022 - [INFO] - 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Successfully Parsed Excel File: expedia_report_monthly_march_2018.xlsx
-Data From Worksheet: VOC Rolling MoM
-~~~ For the Month of March in 2018 ~~~
-Promoters:279 Good (200 or Greater)
-Passives:21 Bad (Lower than 100)
-Dectractors:33 Bad (Lower than 100)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-22:46:39 02-21-2022 - [INFO] - Application Successfully Ran
-22:46:39 02-21-2022 - [ERROR] - There Was A Problem Running The Application
-22:46:57 02-21-2022 - [INFO] - Application Was Successfully Closed
-22:47:05 02-21-2022 - [INFO] - Application Was Successfully Closed
-22:50:51 02-21-2022 - [INFO] - Parsing Valid File Name: expedia_report_monthly_march_2018.xlsx
-22:50:51 02-21-2022 - [INFO] - 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Successfully Parsed Excel File: expedia_report_monthly_march_2018.xlsx
-Data From Worksheet: VOC Rolling MoM
-~~~ For the Month of March in 2018 ~~~
-Promoters:279 Good (200 or Greater)
-Passives:21 Bad (Lower than 100)
-Dectractors:33 Bad (Lower than 100)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-22:50:51 02-21-2022 - [INFO] - Application Successfully Ran
-22:50:51 02-21-2022 - [ERROR] - There Was A Problem Running The Application
-22:51:00 02-21-2022 - [INFO] - Application Was Successfully Closed
-22:52:45 02-21-2022 - [INFO] - Parsing Valid File Name: expedia_report_monthly_march_2018.xlsx
-22:52:45 02-21-2022 - [INFO] - 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Successfully Parsed Excel File: expedia_report_monthly_march_2018.xlsx
-Data From Worksheet: VOC Rolling MoM
-~~~ For the Month of March in 2018 ~~~
-Promoters:279 Good (200 or Greater)
-Passives:21 Bad (Lower than 100)
-Dectractors:33 Bad (Lower than 100)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-22:52:45 02-21-2022 - [INFO] - Application Successfully Ran
-22:56:01 02-21-2022 - [INFO] - Application Was Successfully Closed
-22:56:09 02-21-2022 - [INFO] - Application Was Successfully Closed
-22:56:26 02-21-2022 - [INFO] - Application Was Successfully Closed
+00:34:40 02-22-2022 - [INFO] - File Parsed Successfully
+00:34:40 02-22-2022 - [ERROR] - File Chosen Does not have expedia_report In Name Where It should Be
+00:34:40 02-22-2022 - [ERROR] - File Name Is Not Valid
+00:34:40 02-22-2022 - [ERROR] - File Chosen Is Not A '.xlsx' Excel File
+00:34:40 02-22-2022 - [ERROR] - File Name Is Not Valid
+00:34:40 02-22-2022 - [ERROR] - File Chosen Does not have expedia_report In Name Where It should Be
+00:34:40 02-22-2022 - [ERROR] - File Name Is Not Valid
+00:34:40 02-22-2022 - [ERROR] - File Chosen Does not have expedia_report In Name Where It should Be
+00:34:40 02-22-2022 - [ERROR] - File Name Is Not Valid
+00:34:40 02-22-2022 - [ERROR] - File Chosen Does not have expedia_report In Name Where It should Be
+00:34:40 02-22-2022 - [ERROR] - File Name Is Not Valid
+00:34:40 02-22-2022 - [ERROR] - File Chosen Was Formatted Improperly
+00:34:40 02-22-2022 - [ERROR] - File Name Is Not Valid
+00:34:40 02-22-2022 - [ERROR] - File Chosen Does not have expedia_report In Name Where It should Be
+00:34:40 02-22-2022 - [ERROR] - File Name Is Not Valid

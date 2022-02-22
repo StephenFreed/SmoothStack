@@ -30,6 +30,7 @@ def is_valid_file_name(file_name: str) -> str:
 
     # splits file name on "_" and "." into list to validate
     file_name_list = re.split('_|\\.', file_name)
+    print(file_name_list)
 
     # checks proper length
     if len(file_name_list) != 6:
@@ -43,6 +44,11 @@ def is_valid_file_name(file_name: str) -> str:
     elif file_name_list[5] != "xlsx":
         logging.error("File Chosen Is Not A '.xlsx' Excel File")
         return f"\n(ERROR: Invalid File Extension) For File: {file_name}\n Must End in: .xlsx"
+
+    # checks for expedia_report
+    elif file_name_list[0].lower() == "expedia" and file_name_list[1].lower() == "report":
+        logging.error("File Chosen Does not have expedia_report In Name Where It should Be")
+        return f"\n(ERROR: File Chosen Does not have expedia_report in Name Where It should Be"
 
     # checks for valid month
     elif list_of_months.count(file_name_list[3]) != 1:
