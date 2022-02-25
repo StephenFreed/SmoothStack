@@ -1,0 +1,6 @@
+.DS_Store
+__pycache__/
+*.pyc
+flask_app_venv/
+cw/
+cw1/
