@@ -1,0 +1,2 @@
+15:59:59 02-26-2022 - [ERROR] - There Was A Problem Running The Application
+16:00:39 02-26-2022 - [INFO] - Application Was Successfully Closed
