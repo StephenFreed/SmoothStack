@@ -1,17 +1,7 @@
-from flask import Flask, render_template, url_for, flash, redirect
-from forms import RegistrationForm, LoginForm
-from flask_sqlalchemy import SQLAlchemy
-from models import User, Post
-
-app = Flask(__name__)
-
-# key for WT Forms CRF Token
-app.config["SECRET_KEY"] = "639ded68629a54ac"
-
-# SQLite development database // use PostgreSQL for production
-app.config["SQLAlCHEMY_DATABASE_URI"] = "sqlite:////site.db"
-db = SQLAlchemy(app)
-
+from flask import render_template, url_for, flash, redirect
+from app_package.forms import RegistrationForm, LoginForm
+from app_package.models import User, Post
+from app_package import app
 
 posts = [
     {
@@ -60,8 +50,3 @@ def login():
             flash("Please Check Username and Password", "danger")
 
     return render_template("login.html", title="Login", form=login_form)
-
-
-if __name__ == "__main__":
-    db.create_all()
-    app.run(debug=True)
