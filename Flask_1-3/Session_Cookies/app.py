@@ -2,6 +2,7 @@ from flask import Flask, redirect, url_for, render_template, request, session
 from datetime import timedelta
 
 app = Flask(__name__)
+
 app.secret_key = "secretkey"  # used for session data encryption
 # sets permanent_session in temp file on server
 app.permanent_session_lifetime = timedelta(days=5)
