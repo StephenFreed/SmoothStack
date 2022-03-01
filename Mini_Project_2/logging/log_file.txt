@@ -1,0 +1,65 @@
+10:26:01 03-01-2022 - [INFO] - Validating: deleted_report_monthly_march_2018.xlsx
+10:26:01 03-01-2022 - [ERROR] - File Chosen Does not have expedia_report In Name Where It should Be
+10:26:01 03-01-2022 - [INFO] - Moving deleted_report_monthly_march_2018.xlsx Into invalid_name Directory
+10:26:01 03-01-2022 - [INFO] - Validating: expedia_report_monthly_january_2018.xlsx
+10:26:01 03-01-2022 - [INFO] - Parsing Valid File Name...
+10:26:01 03-01-2022 - [INFO] - 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Successfully Parsed Excel File: expedia_report_monthly_january_2018.xlsx
+Data From Worksheet: VOC Rolling MoM
+~~~ For the Month of January in 2018 ~~~
+Promoters:256 Good (200 or Greater)
+Passives:86 Bad (Lower than 100)
+Dectractors:86 Bad (Lower than 100)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+10:26:01 03-01-2022 - [INFO] - File Parsed Successfully
+10:26:01 03-01-2022 - [INFO] - Moving: expedia_report_monthly_january_2018.xlsx to processed_files Directory
+10:26:01 03-01-2022 - [INFO] - Validating: expedia_report_monthly_march_2018.txt
+10:26:01 03-01-2022 - [ERROR] - File Chosen Is Not A '.xlsx' Excel File
+10:26:01 03-01-2022 - [INFO] - Moving expedia_report_monthly_march_2018.txt Into invalid_name Directory
+10:26:01 03-01-2022 - [INFO] - Validating: expedia_report_monthly_february_2017.xlsx
+10:26:01 03-01-2022 - [INFO] - Parsing Valid File Name...
+10:26:02 03-01-2022 - [INFO] - 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Successfully Parsed Excel File: expedia_report_monthly_february_2017.xlsx
+Data From Worksheet: VOC Rolling MoM
+~~~ For the Month of February in 2017 ~~~
+Promoters:235 Good (200 or Greater)
+Passives:70 Bad (Lower than 100)
+Dectractors:72 Bad (Lower than 100)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+10:26:02 03-01-2022 - [INFO] - File Parsed Successfully
+10:26:02 03-01-2022 - [INFO] - Moving: expedia_report_monthly_february_2017.xlsx to processed_files Directory
+10:26:02 03-01-2022 - [INFO] - Validating: expedia_report_monthly_march_2018.xlsx
+10:26:02 03-01-2022 - [INFO] - Parsing Valid File Name...
+10:26:02 03-01-2022 - [INFO] - 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Successfully Parsed Excel File: expedia_report_monthly_march_2018.xlsx
+Data From Worksheet: VOC Rolling MoM
+~~~ For the Month of March in 2018 ~~~
+Promoters:279 Good (200 or Greater)
+Passives:21 Bad (Lower than 100)
+Dectractors:33 Bad (Lower than 100)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+10:26:02 03-01-2022 - [INFO] - File Parsed Successfully
+10:26:02 03-01-2022 - [INFO] - Moving: expedia_report_monthly_march_2018.xlsx to processed_files Directory
+10:26:02 03-01-2022 - [INFO] - Validating: expedia_report_monthly_january_20G8.xlsx
+10:26:02 03-01-2022 - [ERROR] - File Chosen Has Incorrect Date Formatting
+10:26:02 03-01-2022 - [INFO] - Moving expedia_report_monthly_january_20G8.xlsx Into invalid_name Directory
+10:26:02 03-01-2022 - [INFO] - Validating: expedia_report_monthly_jan_2018.xlsx
+10:26:02 03-01-2022 - [ERROR] - File Chosen Has Month Incorrectly Formatted In Name
+10:26:02 03-01-2022 - [INFO] - Moving expedia_report_monthly_jan_2018.xlsx Into invalid_name Directory
+10:26:02 03-01-2022 - [INFO] - Validating: report_monthly_january_2018.xlsx
+10:26:02 03-01-2022 - [ERROR] - File Chosen Was Formatted Improperly
+10:26:02 03-01-2022 - [INFO] - Moving report_monthly_january_2018.xlsx Into invalid_name Directory
+10:26:02 03-01-2022 - [INFO] - Validating: expedia_report_monthly_january_20188.xlsx
+10:26:02 03-01-2022 - [ERROR] - File Chosen Has Incorrect Date Formatting
+10:26:02 03-01-2022 - [INFO] - Moving expedia_report_monthly_january_20188.xlsx Into invalid_name Directory
+10:26:02 03-01-2022 - [INFO] - Validating: expedia_report_monthly_january_2017.xlsx
+10:26:02 03-01-2022 - [INFO] - Parsing Valid File Name...
+10:26:02 03-01-2022 - [ERROR] - rows_to_parse_list Is Not The Correct Length In parse_excel_functions.py
+10:26:02 03-01-2022 - [ERROR] - A Known Exception Was Handled | Application Could Not Finish
+10:26:02 03-01-2022 - [INFO] - File:expedia_report_monthly_january_2017.xlsx Was Moved To error_files/invalid_file Directory

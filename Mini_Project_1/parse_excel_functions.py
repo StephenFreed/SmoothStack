@@ -118,7 +118,7 @@ def parse_excel_data(file_name_to_parse: str):
                 else:
                     target_row_column_cell_int = int(target_row_column_cell)
                     successful_log_string += "{}: {}\n".format(header, target_row_column_cell_int)
-            except: # noqa
+            except Exception: # noqa
                 logging.error("Error While Building successful_log_string In parse_excel_functions.py")
                 print("\n(ERROR) Error While Building successful_log_string In parse_excel_functions.py")
                 raise ProgramError

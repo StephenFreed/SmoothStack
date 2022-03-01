@@ -3,6 +3,7 @@ from datetime import timedelta
 
 app = Flask(__name__)
 app.secret_key = "secretkey"  # used for session data encryption
+# sets permanent_session in temp file on server
 app.permanent_session_lifetime = timedelta(days=5)
 
 
@@ -16,11 +17,14 @@ def home():
 @app.route("/addsession", methods=["POST", "GET"])
 def addsession():
     if request.method == "POST":
+        session.permanent = True  # sets to permanent
         user = request.form["nm"]  # gets users name
         session["user"] = user  # creates session variable
         return redirect(url_for("success", name=user))
     else:
-        return render_template("login.html")
+        if "user" in session:
+            return redirect(url_for("user"))
+        return render_template("addsession.html")
 
 
 # login success page
@@ -41,7 +45,7 @@ def user():
 
 @app.route("/logout")
 def logout():
-    session.pop("user", None)
+    session.pop("user", None)  # remove user data from session
     return redirect(url_for("user"))
 
 
