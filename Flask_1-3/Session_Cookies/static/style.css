@@ -1,0 +1,55 @@
+#box-section {
+    box-shadow: 0px 10px 40px 10px rgba( 67, 61, 199, 50%);
+    background-image: url("smoothstack.png");
+    opacity: 0.95;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: white; 
+    width: 600px; 
+    height: 300px; 
+    margin: 0 auto; 
+    text-align:center;
+}
+
+h2 {
+    color: #5A2E93;
+}
+
+.button {
+  background-color: #742E93;
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 12px;
+  box-shadow: 0px 6px 25px 6px rgba( 67, 61, 199, 50%);
+}
+
+
+.button:hover {
+    background-color: #90328F
+}
+
+.button:active {
+  background-color: #742E93;
+  box-shadow: 0 2px #666;
+  transform: translateY(4px);
+
+input[type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 3px solid #ccc;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+}
+
+input[type=text]:focus {
+  border: 3px solid #555;
+}

@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block content %}
+
+    {% if username %}
+        <h2 style="padding-top: 40px">Session Data: {{ username }}</h2>
+
+        <a href="clear">
+            <button class="button" style="margin-top: 130px">Click Here To Clear Session Data</button>
+        </a>
+    {% else %}
+        <h2 style="padding-top: 40px">There Is No Session Data</h2>
+
+        <a href="/">
+            <button class="button" style="margin-top: 130px">Go To Home Page</button>
+        </a>
+    {% endif %}
+    
+{% endblock content %}

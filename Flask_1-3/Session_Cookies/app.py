@@ -4,34 +4,31 @@ from datetime import timedelta
 app = Flask(__name__)
 
 app.secret_key = "secretkey"  # used for session data encryption
-# sets permanent_session in temp file on server
-app.permanent_session_lifetime = timedelta(days=5)
+# app.permanent_session_lifetime = timedelta(days=5)  # sets permanent_session in temp file on server
 
-
-# home rendering index.html template and passing variable
+# home page
 @app.route("/")
+@app.route("/home")
 def home():
-    return render_template("index.html", app_var="Flask Application Home Page")
+    return render_template("index.html", title="Home")
 
-
-# login page that checks POST or GET request
+# add session info page that checks if POST or GET request
 @app.route("/addsession", methods=["POST", "GET"])
 def addsession():
     if request.method == "POST":
-        session.permanent = True  # sets to permanent
-        user = request.form["nm"]  # gets users name
+        # session.permanent = True  # sets to permanent (in this case 5 days)
+        user = request.form["nm"]  # gets users name from POST
         session["user"] = user  # creates session variable
-        return redirect(url_for("success", name=user))
+        return redirect(url_for("success"))
     else:
         if "user" in session:
             return redirect(url_for("user"))
-        return render_template("addsession.html")
+        return render_template("addsession.html", title="Add Session")
 
-
-# login success page
-@app.route("/success/<name>")
-def success(name):
-    return f"<h1>Successful seasion username: {name} now has session data</h1>"
+# successfully created session page
+@app.route("/success")
+def success():
+    return render_template("success.html", title="Success")
 
 
 # verify session data working
@@ -39,15 +36,15 @@ def success(name):
 def user():
     if "user" in session:
         user = session["user"]
-        return f"<h1>This is returned by session data:  {user}</h1>"
+        return render_template("user.html", title="User", username=user)
     else:
-        return "<h1>You have no session data yet...</h1>"
+        return render_template("user.html", title="User")
 
-
-@app.route("/logout")
-def logout():
-    session.pop("user", None)  # remove user data from session
-    return redirect(url_for("user"))
+#removes session data and redirects back to show user page (jinja2 if/else in html)
+@app.route("/clear")
+def clear():
+    session.pop("user", None)  # remove user from session dictionary 
+    return redirect(url_for("user", title="User"))
 
 
 if __name__ == "__main__":

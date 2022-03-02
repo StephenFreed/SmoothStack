@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>HTML Template</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="css/style.css" rel="stylesheet">
-    </head>
-    <body>
-        <p>{{app_var}}</p>
-    </body>
-</html>
+{% extends "layout.html" %}
+{% block content %}
+    <h2 style="padding-top: 40px">Click Below To Create A Session</h2>
+
+    <a href="addsession">
+        <button class="button" style="margin-top: 130px">Click Here To Create Session</button>
+    </a>
+{% endblock content %}
