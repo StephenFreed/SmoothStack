@@ -6,6 +6,7 @@ app = Flask(__name__)
 app.secret_key = "secretkey"  # used for session data encryption
 # app.permanent_session_lifetime = timedelta(days=5)  # sets permanent_session in temp file on server
 
+
 # home page
 @app.route("/")
 @app.route("/home")
@@ -14,7 +15,8 @@ def home():
     resp.set_cookie("username", "", expires=0)  # deletes username cookie when returning home
     return resp
 
-# add session info page that checks if POST or GET request
+
+# addsession page that checks if POST or GET request
 @app.route("/addsession", methods=["POST", "GET"])
 def addsession():
     if request.method == "POST":
@@ -22,16 +24,17 @@ def addsession():
         user = request.form["nm"]  # gets users name from POST
         session["user"] = user  # creates session variable
 
-        resp = make_response(redirect(url_for("success")))
-        resp.set_cookie("username", user)
+        resp = make_response(redirect(url_for("success")))  # build response object
+        resp.set_cookie("username", user)  # set cookie with username key: value
 
-        return resp  # redirect(url_for("success"))
+        return resp
     else:
         if "user" in session:
             return redirect(url_for("user"))
         return render_template("addsession.html", title="Add Session")
 
-# successfully created session page
+
+# successfully created session
 @app.route("/success")
 def success():
     return render_template("success.html", title="Success")
@@ -43,11 +46,12 @@ def user():
     if "user" in session:
         user = session["user"]
         return render_template("user.html", title="User", username=user)
-    else:
+    else:  # else will hit when clear session on this page is selected and /clear redirects back
         cookie_name = request.cookies.get("username")  # gets username from cookie
         return render_template("user.html", title="User", cookie_name=cookie_name)
 
-# removes session data and redirects back to show user page (jinja2 if/else in html)
+
+# removes session data and redirects back to show user page (jinja2 if/else in html shows cookie info now)
 @app.route("/clear")
 def clear():
     session.pop("user", None)  # remove user from session dictionary 
