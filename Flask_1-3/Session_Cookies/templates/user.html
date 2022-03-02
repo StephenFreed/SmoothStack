@@ -8,10 +8,13 @@
             <button class="button" style="margin-top: 130px">Click Here To Clear Session Data</button>
         </a>
     {% else %}
-        <h2 style="padding-top: 40px">There Is No Session Data</h2>
+        <h2 style="padding-top: 10px">There Is No Session Data...But We Secretly Set A Cookie...</h2>
+        {% if cookie_name %}
+            <h2 style="padding-top: 0px">Your Cookie Username Is: {{ cookie_name }}</h2>
+        {% endif %}
 
         <a href="/">
-            <button class="button" style="margin-top: 130px">Go To Home Page</button>
+            <button class="button" style="margin-top: 120px">Go To Home Page</button>
         </a>
     {% endif %}
     

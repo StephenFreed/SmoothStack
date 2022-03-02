@@ -1,5 +1,5 @@
 #box-section {
-    box-shadow: 0px 10px 40px 10px rgba( 67, 61, 199, 50%);
+    box-shadow: 0px 0px 20px 20px rgba( 67, 61, 199, 50%);
     background-image: url("smoothstack.png");
     opacity: 0.95;
     background-repeat: no-repeat;

@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for, render_template, request, session
+from flask import Flask, redirect, url_for, render_template, request, session, make_response
 from datetime import timedelta
 
 app = Flask(__name__)
@@ -10,7 +10,9 @@ app.secret_key = "secretkey"  # used for session data encryption
 @app.route("/")
 @app.route("/home")
 def home():
-    return render_template("index.html", title="Home")
+    resp = make_response(render_template("index.html", title="Home"))
+    resp.set_cookie("username", "", expires=0)  # deletes username cookie when returning home
+    return resp
 
 # add session info page that checks if POST or GET request
 @app.route("/addsession", methods=["POST", "GET"])
@@ -19,7 +21,11 @@ def addsession():
         # session.permanent = True  # sets to permanent (in this case 5 days)
         user = request.form["nm"]  # gets users name from POST
         session["user"] = user  # creates session variable
-        return redirect(url_for("success"))
+
+        resp = make_response(redirect(url_for("success")))
+        resp.set_cookie("username", user)
+
+        return resp  # redirect(url_for("success"))
     else:
         if "user" in session:
             return redirect(url_for("user"))
@@ -38,9 +44,10 @@ def user():
         user = session["user"]
         return render_template("user.html", title="User", username=user)
     else:
-        return render_template("user.html", title="User")
+        cookie_name = request.cookies.get("username")  # gets username from cookie
+        return render_template("user.html", title="User", cookie_name=cookie_name)
 
-#removes session data and redirects back to show user page (jinja2 if/else in html)
+# removes session data and redirects back to show user page (jinja2 if/else in html)
 @app.route("/clear")
 def clear():
     session.pop("user", None)  # remove user from session dictionary 
