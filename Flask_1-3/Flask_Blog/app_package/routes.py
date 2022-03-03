@@ -3,6 +3,9 @@ from app_package.forms import RegistrationForm, LoginForm, UpdateAccountForm, Po
 from app_package.models import User, Post
 from app_package import application, db, bcrypt
 from flask_login import login_user, logout_user, current_user, login_required
+import os
+import secrets
+from PIL import Image
 
 
 @application.route("/test")
@@ -60,11 +63,40 @@ def logout():
     return redirect(url_for("home"))
 
 
+def save_picture(form_picture):
+    random_hex = secrets.token_hex(8)  # random hex
+    f_name, f_ext = os.path.splitext(form_picture.filename)  # split filename and ext
+    picture_fn = random_hex + f_ext  # new file name
+    picture_path = os.path.join(application.root_path, "static/profile_pics", picture_fn)  # path to save
+    
+    # resizes to thumbnail
+    output_size = (125, 125)
+    i = Image.open(form_picture)
+    i.thumbnail(output_size)
+    i.save(picture_path)  # saves picture with new name
+
+    return picture_fn
+
+
+def remove_old_picture(old_filename):
+    try:
+        path_to_remove = os.path.join(application.root_path, "static/profile_pics", old_filename)
+        os.remove(path_to_remove)
+    except:
+        pass
+
+
 @application.route("/account", methods=["POST", "GET"])
 @login_required
 def account():
     update_form = UpdateAccountForm()
     if update_form.validate_on_submit():
+        if update_form.picture.data:
+            picture_file = save_picture(update_form.picture.data)
+            # TODO remove old picture
+            if picture_file:
+                remove_old_picture(current_user.image_file)
+            current_user.image_file = picture_file  # saves to db new image under user
         current_user.username = update_form.username.data
         current_user.email = update_form.email.data
         db.session.commit()
