@@ -15,7 +15,7 @@
             <title>Blog</title>
         {% endif %}
     </head>
-    <body>
+    <body style="background-color: #902B98">
 
         <!-- Header Nav Bar -->
         <header class="site-header">
@@ -50,7 +50,7 @@
         <!-- Main Container -->
         <main role="main" class="container">
           <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-8" style="margin: auto">
               {% with messages = get_flashed_messages(with_categories=true) %}
                   {% if messages %}
                     {% for category, message in messages %}

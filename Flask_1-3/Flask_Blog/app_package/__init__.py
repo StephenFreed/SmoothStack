@@ -8,7 +8,7 @@ application = Flask(__name__)
 # key for WT Forms CRF Token
 application.config["SECRET_KEY"] = "639ded68629a54ac"
 # SQLite development database // use PostgreSQL for production
-application.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///site.db"
+application.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database/site.db"
 
 # db = SQLAlchemy.create_engine(f'sqlite:///db1.db')
 db = SQLAlchemy(application)
