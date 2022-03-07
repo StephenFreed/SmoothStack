@@ -7,6 +7,7 @@ application = Flask(__name__)
 
 # key for WT Forms CRF Token
 application.config["SECRET_KEY"] = "639ded68629a54ac"
+
 # SQLite development database // use PostgreSQL for production
 application.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database/site.db"
 
@@ -21,4 +22,5 @@ login_manager = LoginManager(application)
 login_manager.login_view = "login"
 login_manager.login_message_categor = "info"
 
+# access to routes
 from app_package import routes

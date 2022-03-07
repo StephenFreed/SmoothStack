@@ -8,10 +8,6 @@ import secrets
 from PIL import Image
 
 
-# @application.route("/test")
-# def test():
-#     return redirect("http://flaskblog-env.eba-iwefsg4k.us-east-2.elasticbeanstalk.com/")
-
 @application.route("/")
 @application.route("/home")
 def home():
@@ -24,6 +20,7 @@ def about():
     return render_template("about.html", title="About")
 
 
+# register new user
 @application.route("/register", methods=["POST", "GET"])
 def register():
     if current_user.is_authenticated:
@@ -39,6 +36,7 @@ def register():
     return render_template("register.html", title="Register", form=reg_form)
 
 
+# user can login
 @application.route("/login", methods=["POST", "GET"])
 def login():
     if current_user.is_authenticated:
@@ -56,6 +54,7 @@ def login():
     return render_template("login.html", title="Login", form=login_form)
 
 
+# logout user
 @application.route("/logout")
 def logout():
     logout_user()
@@ -63,6 +62,7 @@ def logout():
     return redirect(url_for("home"))
 
 
+# helper function to save picture
 def save_picture(form_picture):
     random_hex = secrets.token_hex(8)  # random hex
     f_name, f_ext = os.path.splitext(form_picture.filename)  # split filename and ext
@@ -78,6 +78,7 @@ def save_picture(form_picture):
     return picture_fn
 
 
+# helper function to remove old picture if not default 
 def remove_old_picture(old_filename):
     try:
         path_to_remove = os.path.join(application.root_path, "static/profile_pics", old_filename)
@@ -86,24 +87,24 @@ def remove_old_picture(old_filename):
         pass
 
 
+# user account page
 @application.route("/account", methods=["POST", "GET"])
 @login_required
 def account():
-    update_form = UpdateAccountForm()
+    update_form = UpdateAccountForm()  # user can update account info
     if update_form.validate_on_submit():
-        if update_form.picture.data:
-            picture_file = save_picture(update_form.picture.data)
-            # removes old picture
-            if picture_file:
+        if update_form.picture.data:  # check if picture provided
+            picture_file = save_picture(update_form.picture.data)  # names, resizes, and saves new picture
+            if picture_file:  # removes old picture if not default
                 if current_user.image_file != "default.jpg":
                     remove_old_picture(current_user.image_file)
-            current_user.image_file = picture_file  # saves to db new image under user
+            current_user.image_file = picture_file  # saves to db new image file name under user
         current_user.username = update_form.username.data
         current_user.email = update_form.email.data
         db.session.commit()
         flash("Your Account Has Been Updated", "success")
         return redirect(url_for("account"))
-    elif request.method == "GET":
+    elif request.method == "GET":  # fills in user data into form
         update_form.username.data = current_user.username
         update_form.email.data = current_user.email
     image_file = url_for("static", filename="profile_pics/" + current_user.image_file)
@@ -112,6 +113,7 @@ def account():
     return render_template("account.html", title="Account", image_file=image_file, users=users, admin=admin, form=update_form)
 
 
+# new post page
 @application.route("/post/new", methods=["POST", "GET"])
 @login_required
 def new_post():
@@ -125,12 +127,14 @@ def new_post():
     return render_template("create_post.html", title="New Post", form=post_form, legend="New Post")
 
 
+# individual post page by post id
 @application.route("/post/<int:post_id>")
 def post(post_id):
     post = Post.query.get_or_404(post_id)
     return render_template("post.html", title=post.title, post=post)
 
 
+# if author of post update page
 @application.route("/post/<int:post_id>/update", methods=["POST", "GET"])
 @login_required
 def update_post(post_id):
@@ -151,6 +155,7 @@ def update_post(post_id):
         form=post_form, legend="Update Post")
 
 
+# if author of post delete page
 @application.route("/post/<int:post_id>/delete", methods=["POST"])
 @login_required
 def delete_post(post_id):

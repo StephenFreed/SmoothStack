@@ -2,7 +2,7 @@ from datetime import datetime
 from app_package import db, login_manager
 from flask_login import UserMixin
 
-
+# query the current login user, we will judge whether the user can login or not.
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
