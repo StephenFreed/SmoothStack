@@ -166,6 +166,26 @@ def delete_post(post_id):
     db.session.commit()
     flash("Your Post Has Been Deleted", "success")
     return redirect(url_for("home"))
+
+
+# admin account page delete user
+@application.route("/delete/<int:user_id>")
+@login_required
+def delete_user(user_id):
+    try:
+        if user_id != 1:
+            Post.query.filter(Post.user_id == user_id).delete()  # deletes all posts by user
+
+            user_to_delete = User.query.get(user_id)  # gets user info for image
+            if user_to_delete.image_file != "default.jpg":
+                remove_old_picture(user_to_delete.image_file)
+            User.query.filter(User.id == user_id).delete()  # deletes user
+            db.session.commit()
+            flash("User  and Posts Have Been Deleted", "success")
+    except:
+        flash("There Was A Problem Deleting User", "danger")
+    finally:
+        return redirect(url_for("account"))
     
 
 @application.errorhandler(404)

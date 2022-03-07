@@ -10,10 +10,13 @@
       </div>
 
       {% if current_user.username.lower() == admin %}
-      <div class="content-section" style="clear: both;float: left; width: 500px">
+      <div class="content-section" style="clear: both;float: left; width: 550px">
                 <h2 style="padding-bottom: 10px; padding-top: 20px">List of Usernames and Emails</h2>
                 {% for user in users %}
-                    <ul><li style="padding:0">Username: {{ user.username }}  |   Email: {{ user.email }}</li></ul>
+                    {% if user.id != 1 %}
+                        <ul><li style="padding:0">Username: {{ user.username }}  |   Email: {{ user.email }}
+                        <a class="btn btn-danger btn-sm m-1" href="{{ url_for("delete_user", user_id=user.id) }}" onclick="return confirm('Are you sure?')">Delete User</a></li></ul>
+                    {% endif %}
                 {% endfor %}
       </div>
       {% endif %}
@@ -67,4 +70,5 @@
         </form>
       </div>
     </div>
+
 {% endblock content %}
