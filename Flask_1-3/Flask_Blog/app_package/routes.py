@@ -8,9 +8,9 @@ import secrets
 from PIL import Image
 
 
-@application.route("/test")
-def test():
-    return redirect("http://flaskblog-env.eba-iwefsg4k.us-east-2.elasticbeanstalk.com/")
+# @application.route("/test")
+# def test():
+#     return redirect("http://flaskblog-env.eba-iwefsg4k.us-east-2.elasticbeanstalk.com/")
 
 @application.route("/")
 @application.route("/home")
@@ -93,9 +93,10 @@ def account():
     if update_form.validate_on_submit():
         if update_form.picture.data:
             picture_file = save_picture(update_form.picture.data)
-            # TODO remove old picture
+            # removes old picture
             if picture_file:
-                remove_old_picture(current_user.image_file)
+                if current_user.image_file != "default.jpg":
+                    remove_old_picture(current_user.image_file)
             current_user.image_file = picture_file  # saves to db new image under user
         current_user.username = update_form.username.data
         current_user.email = update_form.email.data

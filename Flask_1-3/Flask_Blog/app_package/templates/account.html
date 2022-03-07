@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
-    <div class="content-section" style="overflow: hidden">
+    <div class="content-section" style="overflow: hidden; min-width: 550px">
       <div class="media" style="float:left">
           <img class="rounded-circle account-img" src={{ image_file }}>
       </div>
@@ -10,7 +10,7 @@
       </div>
 
       {% if current_user.username.lower() == admin %}
-      <div class="content-section" style="clear: both;float: left">
+      <div class="content-section" style="clear: both;float: left; width: 500px">
                 <h2 style="padding-bottom: 10px; padding-top: 20px">List of Usernames and Emails</h2>
                 {% for user in users %}
                     <ul><li style="padding:0">Username: {{ user.username }}  |   Email: {{ user.email }}</li></ul>
@@ -19,7 +19,7 @@
       {% endif %}
 
 
-      <div class="content-section" style="clear: both;float: left; width: 50%">
+      <div class="content-section" style="clear: both;float: left; width: 500px">
           <form method="POST" action="" enctype="multipart/form-data">
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
@@ -51,7 +51,7 @@
                         {{ form.email(class="form-control form-control-lg") }}
                     {% endif %}
                 </div>
-                <div class="form-group">
+                <div class="form-group" style="margin: 15px 0 15px 0">
                     {{ form.picture.label() }}
                     {{ form.picture(class="form-control-file") }}
                     {% if form.picture.errors %}
