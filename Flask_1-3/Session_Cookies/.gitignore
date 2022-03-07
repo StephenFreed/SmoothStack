@@ -2,3 +2,4 @@
 __pycache__/
 *.pyc
 flask_app_venv/
+sessions_cookies_venv/
