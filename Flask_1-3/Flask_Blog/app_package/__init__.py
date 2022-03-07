@@ -4,6 +4,7 @@ from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 
 application = Flask(__name__)
+application.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 # key for WT Forms CRF Token
 application.config["SECRET_KEY"] = "639ded68629a54ac"
